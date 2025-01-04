@@ -4,21 +4,27 @@ import { NavigationSection } from '../../components/section-navigation'
 import { TagsSection } from '../../components/section-tags'
 import { AdWrapper } from '../../components/wrapper-ad'
 import '../globals.css'
+import MainHorizontalLayout from '@/components/layouts/MainHorizontalLayout'
+import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
 
 export default function RootLayout ({ children }) {
   return (
-    <div className='min-h-screen flex flex-col'>
+    <MainHorizontalLayout>
       <PromotionSection />
       <SettingsSection />
       <NavigationSection />
       <TagsSection />
-      <div className='max-w-[var(--max-width-total)] mx-auto w-full flex justify-between'>
-        <AdWrapper position='left' />
-        <main className='flex-1 max-w-[var(--max-width-content)] px-4 py-6'>
+      <ContentVerticalLayout>
+        <div className='shrink-0 bg-rose-200 hidden xl:block'>
+          <AdWrapper position='left' />
+        </div>
+        <main className='shrink px-4 py-6'>
           {children}
         </main>
-        <AdWrapper position='right' />
-      </div>
-    </div>
+        <div className='shrink-0 bg-sky-200 hidden md:block'>
+          <AdWrapper position='right' />
+        </div>
+      </ContentVerticalLayout>
+    </MainHorizontalLayout>
   )
 }

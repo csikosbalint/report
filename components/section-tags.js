@@ -17,10 +17,10 @@ export function TagsSection() {
   ]
 
   return (
-    <div className="sticky top-16 z-10 bg-background border-b">
-      <div className="max-w-[var(--max-width-wide)] mx-auto">
+    <div className="w-full sticky top-16 z-10 bg-background border-b">
+      <div className="max-w-[var(--max-width-total)] mx-auto">
         <ScrollArea className="w-full whitespace-nowrap">
-          <div className="flex w-max space-x-4 p-4">
+          <div className="flex w-max space-x-4 py-2 p-4">
             <Button variant="outline" size="icon" className="rounded-full">
               <TrendingUp className="h-4 w-4" />
               <span className="sr-only">Trending</span>

@@ -9,8 +9,8 @@ export function NavigationSection() {
   ]
 
   return (
-    <nav className="sticky top-0 z-20 bg-background border-b">
-      <div className="max-w-[var(--max-width-wide)] mx-auto"> 
+    <nav className="w-full sticky top-0 z-20 bg-background border-b">
+      <div className="max-w-[var(--max-width-total)] mx-auto"> 
         <div className="flex h-16 items-center px-4">
           <div className="flex items-center space-x-6">
             {menuItems.map((item) => (
