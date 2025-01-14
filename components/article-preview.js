@@ -153,7 +153,7 @@ export default function ArticlePreview({
         <div className="p-6 space-y-4">
           {renderImage()}
           <div className="flex flex-col space-y-4">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col space-y-2">
               <div className="flex gap-2">
                 {tags.map((tag) => (
                   <Badge key={tag} variant="secondary">
@@ -188,8 +188,8 @@ export default function ArticlePreview({
       <div className="relative">
         {renderImage()}
         <div
-          className="absolute inset-0 bg-black bg-opacity-50 text-white p-6 flex flex-col justify-end">
-          <div className="flex justify-between items-center mb-4">
+          className="absolute inset-0 bg-black bg-opacity-60 text-white p-6 flex flex-col justify-between">
+          <div className="flex justify-between items-start">
             <div className="flex gap-2">
               {tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="bg-white text-black">
@@ -208,8 +208,10 @@ export default function ArticlePreview({
               </div>
             </div>
           </div>
-          <h1 className={titleClass}>{title}</h1>
-          <p className="text-lg">{description}</p>
+          <div>
+            <h1 className={cn(titleClass, "mb-4")}>{title}</h1>
+            <p className="text-lg">{description}</p>
+          </div>
         </div>
       </div>
     </Link>)
