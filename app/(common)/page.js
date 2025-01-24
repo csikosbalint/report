@@ -41,6 +41,10 @@ export default async function Home() {
 
   return (
     <div className="space-y-12">
+      {/* Main Article */}
+      <section className="w-[var(--max-width)]">
+        <ArticlePreview size="xl" {...articles[0]} />
+      </section>
       {/* Featured Article */}
       <section className="space-y-6">
         <div className="grid gap-6 lg:grid-cols-2">
