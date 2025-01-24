@@ -88,8 +88,8 @@ export default function ArticlePreview({
     const maxWords = {
       xs: 0,
       s: 10,
-      m: 20,
-      l: 30,
+      m: 15,
+      l: 20,
       xl: 40,
     };
 
@@ -107,7 +107,8 @@ export default function ArticlePreview({
         {isTruncated && (
           <>
             <span>... </span>
-            <span className="inline-flex items-center text-primary hover:underline">
+            <br />
+            <span className="flex justify-end items-center font-semibold hover:underline">
               Read more
             </span>
           </>
@@ -125,7 +126,10 @@ export default function ArticlePreview({
       const shortReadTime = readTime.replace(" read", "");
       return { shortDate, shortReadTime };
     }
-    return { shortDate: date, shortReadTime: readTime };
+    return {
+      shortDate: new Date(date).toLocaleDateString(),
+      shortReadTime: readTime,
+    };
   };
 
   const { shortDate, shortReadTime } = formatDateAndTime(date, readTime);

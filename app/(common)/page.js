@@ -9,10 +9,18 @@ export default async function Home() {
   const posts = await fetchPosts();
   const validTags = ["Lorem", "Ipsum", "alma", "korte"];
   const articles = posts.map((post) => {
+    const subtitle = decode(parse(post.content).querySelector("h1")?.innerText);
+    const description = decode(
+      parse(post.content).querySelector("h3")?.innerText
+    );
+    const mainImage = decode(
+      parse(post.content).querySelector("img")?.getAttribute("src")
+    );
+    console.log(parse(post.content).querySelector("img")?.getAttribute("src"));
     return {
       title: post.title,
-      image: "/placeholder.svg?height=500&width=1000",
-      description: decode(parse(post.content).querySelector("h3").innerText),
+      image: mainImage || "/placeholder.svg?height=500&width=1000",
+      description,
       date: post.published,
       readTime: "5 min read",
       tags: post.labels.filter((label) => validTags.includes(label)),

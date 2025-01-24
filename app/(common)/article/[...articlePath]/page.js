@@ -48,8 +48,11 @@ export default async function ArticlePage({ params }) {
     postId: articlePath[articlePath.length - 1].split("-")[1],
   });
   const relatedStories = await getRelatedStories(article);
-  const description = parse(article.content).querySelector("h3").innerText;
-  const content = parse(article.content).querySelectorAll(':not(h3)').join("");
+  const content = parse(article.content);
+  const description = content.querySelector("h3");
+  description?.remove();
+  const subtitle = content.querySelector("h1");
+  subtitle?.remove();
   return (
     <div>
       <article className="space-y-8">
@@ -58,25 +61,24 @@ export default async function ArticlePage({ params }) {
             {article.title}
           </h1>
           <p className="text-xl text-muted-foreground">
-            {description}
+            {description.innerText}
           </p>
           <div className="flex items-center space-x-4">
             <Avatar>
               <AvatarImage
-                src="/placeholder.svg?height=40&width=40"
-                alt="John Doe"
+                alt={article.author.displayName}
               />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-semibold">John Doe</p>
+              <p className="font-semibold">{article.author.displayName}</p>
               <p className="text-sm text-muted-foreground">
-                Environmental Correspondent
+                Internal Analyst
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <time dateTime="2023-12-29">December 29, 2023</time>
+            <time dateTime="2023-12-29">{new Date(article.published).toDateString()}</time>
             <span>•</span>
             <span>10 min read</span>
           </div>
@@ -84,7 +86,7 @@ export default async function ArticlePage({ params }) {
 
         <div
           className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: decode(content ) }}
+          dangerouslySetInnerHTML={{ __html: decode(content.innerHTML) }}
         ></div>
       </article>
 
