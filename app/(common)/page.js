@@ -2,27 +2,8 @@ import { Card, CardContent } from "../../components/ui/card";
 import ArticlePreview from "@/components/article-preview";
 import { parse } from "node-html-parser";
 import { decode } from "html-entities";
-
-const fetchPosts = async () => {
-  const posts = [];
-  await Promise.all(
-    process.env.BLOGGERS.split(",").map(async (blogger) => {
-      const res = await fetch(
-        `https://www.googleapis.com/blogger/v3/blogs/${blogger}/posts?key=${process.env.BLOGGER_API_KEY}`,
-        {
-          next: {
-            revalidate: 5,
-            tags: [`${blogger}`, "posts"],
-          },
-        }
-      );
-      const data = await res.json();
-      posts.push(...data.items);
-    })
-  );
-
-  return posts;
-}
+import { fetchPosts } from "@/lib/helper";
+import UrlSafeString from "url-safe-string";
 
 export default async function Home() {
   const posts = await fetchPosts();
@@ -35,7 +16,7 @@ export default async function Home() {
       date: post.published,
       readTime: "5 min read",
       tags: post.labels.filter((label) => validTags.includes(label)),
-      link: "/article/breaking-news-major-climate-agreement-reached-at-international-summit",
+      link: `/article/${new Date(post.published).getFullYear()}/${new Date(post.published).getMonth()}/${new Date(post.published).getDate()}/${new UrlSafeString().generate(post.title)}/${post.blog.id}-${post.id}`,
     };
   });
 
