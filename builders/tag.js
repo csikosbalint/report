@@ -1,0 +1,1 @@
+export const validTags = ["Lorem", "Ipsum", "alma", "korte"];

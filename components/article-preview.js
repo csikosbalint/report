@@ -20,15 +20,15 @@ function truncateTitle(title, maxLength) {
 
 export default function ArticlePreview({
   size = "m",
-  title,
-  image,
+  title = "Article Title",
+  image = "/placeholder.svg?height=500&width=1000",
   date = "Jan 13, 2024",
   readTime = "5 min read",
   tags = ["Technology", "AI", "Development"],
   description = "An interesting article about the future of technology and its impact on society...",
   className,
   showPicture = true,
-  link,
+  link = "/#",
 }) {
   const variants = {
     xs: "flex items-center gap-3 p-2",

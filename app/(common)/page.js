@@ -2,12 +2,13 @@ import { Card, CardContent } from "../../components/ui/card";
 import ArticlePreview from "@/components/article-preview";
 import { parse } from "node-html-parser";
 import { decode } from "html-entities";
-import { fetchPosts } from "@/lib/helper";
 import UrlSafeString from "url-safe-string";
+import { fetchPosts } from "@/builders/post";
+import { validTags } from "@/builders/tag";
+import { LABEL_FEATURED, LABEL_INDEPTH, LABEL_LATEST, LABEL_MAIN, LABEL_REGION_EUROPE, LABEL_REGION_EUROPE_HUNGARY } from "@/builders/label";
 
 export default async function Home() {
   const posts = await fetchPosts();
-  const validTags = ["Lorem", "Ipsum", "alma", "korte"];
   const articles = posts.map((post) => {
     const subtitle = decode(parse(post.content).querySelector("h1")?.innerText);
     const description = decode(
@@ -23,6 +24,7 @@ export default async function Home() {
       description,
       date: post.published,
       readTime: "5 min read",
+      labels: post.labels,
       tags: post.labels.filter((label) => validTags.includes(label)),
       link: `/article/${new Date(post.published).getFullYear()}/${new Date(post.published).getMonth()}/${new Date(post.published).getDate()}/${new UrlSafeString().generate(post.title)}/${post.blog.id}-${post.id}`,
     };
@@ -32,21 +34,27 @@ export default async function Home() {
     <div className="space-y-12">
       {/* Main Article */}
       <section className="w-[var(--max-width)]">
-        <ArticlePreview size="xl" {...articles[0]} />
+        {articles.find((article) => article.labels.includes(LABEL_MAIN)) &&
+          [articles.find((article) => article.labels.includes(LABEL_MAIN))].map(
+            (article, index) => (
+              <ArticlePreview key={index} size="xl" {...article} />
+            )
+          )}
       </section>
       {/* Featured Article */}
       <section className="space-y-6">
         <div className="grid gap-6 lg:grid-cols-2">
-          <ArticlePreview size="l" {...articles[0]} />
           <div className="space-y-6">
-            {[1, 2, 3].map((i) => (
-              <ArticlePreview
-                key={i}
-                size="m"
-                showPicture={false}
-                {...articles[i]}
-              />
-            ))}
+            {articles
+              .filter((article) => article.labels.includes(LABEL_FEATURED))
+              .map((article, index) => (
+                <ArticlePreview
+                  key={index}
+                  size="m"
+                  showPicture={false}
+                  {...article}
+                />
+              ))}
           </div>
         </div>
       </section>
@@ -57,9 +65,14 @@ export default async function Home() {
       <section className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">Latest News</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <ArticlePreview key={i} size="xs" {...articles[i]} />
-          ))}
+          {articles
+            .filter(
+              (article) =>
+                !article.labels.includes && !article.labels.includes(LABEL_LATEST)
+            )
+            .map((article, index) => (
+              <ArticlePreview key={index} size="xs" {...article} />
+            ))}
         </div>
       </section>
 
@@ -69,9 +82,11 @@ export default async function Home() {
       <section className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">In-Depth Analysis</h2>
         <div className="grid gap-6 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <ArticlePreview key={i} size="s" {...articles[i]} />
-          ))}
+          {articles
+            .filter((article) => article.labels.includes(LABEL_INDEPTH))
+            .map((article, index) => (
+              <ArticlePreview key={index} size="s" {...article} />
+            ))}
         </div>
       </section>
 
@@ -112,14 +127,20 @@ export default async function Home() {
       <section className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">Regional News</h2>
         <div className="grid gap-6 md:grid-cols-2">
-          {[1, 2, 3, 4].map((i) => (
-            <ArticlePreview
-              key={i}
-              size="s"
-              showPicture={false}
-              {...articles[i]}
-            />
-          ))}
+          {articles
+            .filter(
+              (article) =>
+                article.labels.includes(LABEL_REGION_EUROPE) ||
+                article.labels.includes(LABEL_REGION_EUROPE_HUNGARY)
+            )
+            .map((article, index) => (
+              <ArticlePreview
+                key={index}
+                size="s"
+                showPicture={false}
+                {...article}
+              />
+            ))}
         </div>
       </section>
     </div>

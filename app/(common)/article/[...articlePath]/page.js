@@ -2,9 +2,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SectionArticleRelated } from "@/components/section-article-related";
-import { fetchPost, fetchPosts } from "@/lib/helper";
 import { decode } from "html-entities";
 import parse from "node-html-parser";
+import { fetchPost, fetchPosts } from "@/builders/post";
 
 export async function generateStaticParams() {
   const articles = await fetchPosts();
