@@ -1,6 +1,6 @@
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -11,6 +11,7 @@ export default function RootLayout({ children }) {
       <body>
         <div>{children}</div>
         <CookieConsent />
+        <SpeedInsights />
       </body>
     </html>
   );
