@@ -1,1 +1,1 @@
-export const validTags = ["Lorem", "hu", "eu", "migráció"];
+export const validTags = ["hu", "eu", "migráció", "egészség", "család", "politika"];
