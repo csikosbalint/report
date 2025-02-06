@@ -1,1 +1,1 @@
-export const validTags = ["Lorem", "Ipsum", "alma", "korte"];
+export const validTags = ["Lorem", "hu", "eu", "migráció"];

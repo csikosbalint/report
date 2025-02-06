@@ -66,10 +66,7 @@ export default async function Home() {
         <h2 className="text-3xl font-bold tracking-tight">Latest News</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles
-            .filter(
-              (article) =>
-                !article.labels.includes && !article.labels.includes(LABEL_LATEST)
-            )
+            .sort((a, b) => new Date(b.published) - new Date(a.published))
             .map((article, index) => (
               <ArticlePreview key={index} size="xs" {...article} />
             ))}

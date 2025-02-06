@@ -50,6 +50,7 @@ export default function ArticlePreview({
     if (!showPicture) return <div className="hidden" />;
     const img = (
       <Image
+        priority
         src={
           image ||
           `https://via.placeholder.com/${imageSize[size].width}x${imageSize[size].height}`
