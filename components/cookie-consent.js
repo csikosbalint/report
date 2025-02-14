@@ -32,45 +32,60 @@ export function CookieConsent() {
   if (!isVisible) return null
 
   return (
-    (<div
+    <div
       className={`fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end justify-center p-4 transition-opacity duration-500 ease-in-out ${
-        isFading ? 'opacity-0' : 'opacity-100'
-      }`}>
-      <div
-        className="w-full max-w-[101rem] bg-slate-300 rounded-t-lg overflow-hidden">
+        isFading ? "opacity-0" : "opacity-100"
+      }`}
+    >
+      <div className="w-full max-w-[101rem] bg-slate-300 rounded-t-lg overflow-hidden">
         <Alert className="rounded-none">
-          <AlertDescription
-            className="flex flex-col sm:flex-row items-start justify-between gap-4 p-4">
+          <AlertDescription className="flex flex-col sm:flex-row items-start justify-between gap-4 p-4">
             <div className="flex-1 text-sm">
-              Unlike other news sites, we do not share or sell your data to third-parties for targeted ads. In fact, the Ground News application and website do not run any ads at all. Our application and website use cookies and similar technologies to personalize content we deliver to you and also allows us to improve your usage of our platform through analytics. These cookies help us provide the best experience possible. Learn more about cookies and preference selection{' '}
+              A Holnap.click weboldal és alkalmazás sütiket és hasonló
+              technológiákat használ a tartalom személyre szabásához, valamint
+              annak érdekében, hogy analitikák segítségével javíthassuk a
+              felhasználói élményt. Weboldalunk hirdetéseket is megjelenít. Ezek
+              a sütik hozzájárulnak ahhoz, hogy a lehető legjobb élményt
+              nyújthassuk. További információ a sütikről és a beállítási
+              lehetőségekről{" "}
               <Link href="/cookie-preferences" className="underline">
-                here
+                itt
               </Link>
-              .
+              található.
               <br />
               <br />
-              By continuing to use our application or website, you agree to our{' '}
-              <Link href="/terms" className="underline">
-                Terms of Service
-              </Link>{' '}
-              and{' '}
-              <Link href="/privacy" className="underline">
-                Privacy Policy
+              Az alkalmazásunk vagy weboldalunk további használatával Ön
+              elfogadja
+              <Link href="/legal/terms" className="underline">
+                {" "}
+                a Szolgáltatási feltételeket
+              </Link>{" "}
+              és{" "}
+              <Link href="/legal/privacy" className="underline">
+                az Adatvédelmi szabályzatot
               </Link>
               .
             </div>
             <div className="flex flex-col gap-2 mt-4 sm:mt-0">
-              <Button variant="default" onClick={handleAccept} className="w-full">
+              <Button
+                variant="default"
+                onClick={handleAccept}
+                className="w-full"
+              >
                 Accept
               </Button>
-              <Button variant="outline" onClick={handleDecline} className="w-full">
+              <Button
+                variant="outline"
+                onClick={handleDecline}
+                className="w-full"
+              >
                 Decline
               </Button>
             </div>
           </AlertDescription>
         </Alert>
       </div>
-    </div>)
+    </div>
   );
 }
 
