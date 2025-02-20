@@ -105,3 +105,25 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .promotion-section {
+    @apply w-full p-2 text-primary-foreground bg-black justify-between items-center transition-all duration-500 ease-in-out;
+  }
+
+  .promotion-section .dismiss-button {
+    @apply text-primary-foreground h-4 w-4 hover:cursor-pointer transition-transform duration-500 ease-in-out;
+  }
+
+  .promotion-section .content {
+    @apply flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8;
+  }
+
+  .promotion-section .text {
+    @apply text-sm font-medium;
+  }
+
+  .promotion-section .button {
+    @apply variant-secondary size-sm;
+  }
+}
