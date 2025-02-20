@@ -124,6 +124,6 @@ body,
   }
 
   .promotion-section .button {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 size-sm;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 sm;
   }
 }
