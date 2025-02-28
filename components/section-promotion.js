@@ -16,14 +16,14 @@ export function PromotionSection ({ text, buttonText, link }) {
           <p className='text-sm font-medium'>
             {text}
           </p>
-          <Button variant='secondary' size='sm' as='a' href={link}>
+          <Button variant='secondary' size='sm' onClick={() => window.location.href = link}>
             {buttonText}
           </Button>
         </div>
       </div>
       <X
         onClick={() => setIsVisible(false)}
-        className='text-primary-foreground h-4 w-4 hover:cursor-pointer transition-transform duration-500 ease-in-out'
+        className='text-primary-foreground h-4 w-4 hover:cursor-pointer absolute top-2 right-2'
       />
       <span className='sr-only'>Dismiss</span>
     </div>

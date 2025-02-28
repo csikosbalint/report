@@ -8,15 +8,15 @@ import MainHorizontalLayout from '@/components/layouts/MainHorizontalLayout'
 import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
 
 export default function RootLayout ({ children }) {
-  const showPromotionSection = true; // This will later come from user
+  const showPromotion = true; // This will later come from user
 
   return (
     <MainHorizontalLayout>
-      {showPromotionSection && (
+      {showPromotion && (
         <PromotionSection 
-          text="Want a second opinion on the news that you're reading?"
-          buttonText="Learn More"
-          link="/learn-more"
+          text="Want a second opinion on the news that you're reading?" 
+          buttonText="Learn More" 
+          link="https://example.com" 
         />
       )}
       <SettingsSection />
