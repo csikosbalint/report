@@ -10,9 +10,9 @@ export function PromotionSection ({ text, buttonText, link }) {
   if (!isVisible) return null
 
   return (
-    <div className='w-full p-2 text-primary-foreground bg-black justify-between items-center transition-all duration-500 ease-in-out'>
-      <div className='w-full relative'>
-        <div className='flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8'>
+    <div className='max-w-[var(--max-width-total)] flex w-full p-2 text-primary-foreground bg-primary justify-between items-center relative'>
+      <div className='w-full'>
+        <div className='flex items-center justify-center gap-2 sm:gap-8'>
           <p className='text-sm font-medium'>
             {text}
           </p>
