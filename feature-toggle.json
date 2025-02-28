@@ -3,6 +3,6 @@
   "geolocation": false,
   "notification": true,
   "darkMode": true,
-  "edition": "europe",
+  "edition": false,
   "tagFilterSection": true
 }
