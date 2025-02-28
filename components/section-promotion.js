@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { X } from 'lucide-react'
 import { Button } from './ui/button'
 
-export function PromotionSection () {
+export function PromotionSection ({ text, buttonText, link }) {
   const [isVisible, setIsVisible] = useState(true)
 
   if (!isVisible) return null
@@ -14,10 +14,10 @@ export function PromotionSection () {
       <div className='w-full'>
         <div className='flex items-center justify-center gap-2 sm:gap-8'>
           <p className='text-sm font-medium'>
-            Want a second opinion on the news that you&apos;re reading?
+            {text}
           </p>
-          <Button variant='secondary' size='sm'>
-            Learn More
+          <Button variant='secondary' size='sm' onClick={() => window.location.href = link}>
+            {buttonText}
           </Button>
         </div>
       </div>
