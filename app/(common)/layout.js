@@ -6,9 +6,10 @@ import { AdWrapper } from '../../components/wrapper-ad'
 import '../globals.css'
 import MainHorizontalLayout from '@/components/layouts/MainHorizontalLayout'
 import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
+import featureToggles from '../../feature-toggle.json'
 
 export default function RootLayout ({ children }) {
-  const showPromotion = true; // This will later come from user
+  const { showPromotion, geolocation, notification, darkMode, edition, tagFilterSection } = featureToggles;
 
   return (
     <MainHorizontalLayout>
@@ -19,9 +20,9 @@ export default function RootLayout ({ children }) {
           link="https://example.com" 
         />
       )}
-      <SettingsSection />
-      <NavigationSection />
-      <TagsSection />
+      {geolocation && <SettingsSection />}
+      {notification && <NavigationSection />}
+      {tagFilterSection && <TagsSection />}
       <ContentVerticalLayout>
         <div className='shrink-0 bg-rose-200 hidden xl:block'>
           <AdWrapper position='left' />

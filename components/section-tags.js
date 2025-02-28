@@ -1,8 +1,10 @@
 import { Plus, TrendingUp } from 'lucide-react'
 import { Button } from './ui/button'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
+import featureToggles from '../feature-toggle.json'
 
 export function TagsSection() {
+  const { tagFilterSection } = featureToggles;
   const tags = [
     'Israel-Hamas Conflict',
     'European Politics',
@@ -15,6 +17,8 @@ export function TagsSection() {
     'Crime',
     'Vladimir Putin',
   ]
+
+  if (!tagFilterSection) return null;
 
   return (
     <div className="w-full sticky top-16 z-10 bg-background border-b">
@@ -38,4 +42,3 @@ export function TagsSection() {
     </div>
   )
 }
-

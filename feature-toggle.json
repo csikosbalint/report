@@ -1,0 +1,8 @@
+{
+  "showPromotion": true,
+  "geolocation": false,
+  "notification": true,
+  "darkMode": true,
+  "edition": false,
+  "tagFilterSection": true
+}

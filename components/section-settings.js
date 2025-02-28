@@ -9,21 +9,24 @@ import {
   SelectTrigger,
   SelectValue
 } from './ui/select'
+import featureToggles from '../feature-toggle.json'
 
 export function SettingsSection () {
+  const { geolocation, notification, darkMode, edition } = featureToggles;
+
   return (
     <div className='w-full bg-secondary py-1 border-b'>
       <div className='max-w-[var(--max-width-total)] mx-auto'>
         <div className='flex items-center justify-between px-4'>
           <div className='flex items-center space-x-4'>
             <div className='flex items-center space-x-2'>
-              <Switch id='notifications' />
+              <Switch id='notifications' checked={notification} />
               <label htmlFor='notifications' className='text-sm'>
                 Enable Notifications
               </label>
             </div>
             <div className='flex items-center space-x-2'>
-              <Switch id='geolocation' />
+              <Switch id='geolocation' checked={geolocation} />
               <label htmlFor='geolocation' className='text-sm'>
                 Enable Geolocation
               </label>
@@ -32,7 +35,7 @@ export function SettingsSection () {
           <div className='flex items-center space-x-4'>
             <div className='flex items-center space-x-2'>
               <Sun className='h-4 w-4' />
-              <Select defaultValue='system'>
+              <Select defaultValue={darkMode ? 'dark' : 'light'}>
                 <SelectTrigger className='w-[120px]'>
                   <SelectValue placeholder='Theme' />
                 </SelectTrigger>
@@ -45,7 +48,7 @@ export function SettingsSection () {
             </div>
             <div className='flex items-center space-x-2'>
               <Globe className='h-4 w-4' />
-              <Select defaultValue='europe'>
+              <Select defaultValue={edition}>
                 <SelectTrigger className='w-[140px]'>
                   <SelectValue placeholder='Edition' />
                 </SelectTrigger>
