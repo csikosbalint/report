@@ -112,7 +112,7 @@ body,
   }
 
   .promotion-section .dismiss-button {
-    @apply text-primary-foreground h-4 w-4 hover:cursor-pointer transition-transform duration-500 ease-in-out;
+    @apply text-primary-foreground h-4 w-4 hover:cursor-pointer transition-transform duration-500 ease-in-out absolute top-2 right-2;
   }
 
   .promotion-section .content {

@@ -11,7 +11,7 @@ export function PromotionSection ({ text, buttonText, link }) {
 
   return (
     <div className='max-w-[var(--max-width-total)] flex w-full p-2 text-primary-foreground bg-primary justify-between items-center relative'>
-      <div className='w-full'>
+      <div className='w-full mr-8'>
         <div className='flex items-center justify-center gap-2 sm:gap-8'>
           <p className='text-sm font-medium'>
             {text}
