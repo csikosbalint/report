@@ -1,24 +1,20 @@
-import { Plus, TrendingUp } from 'lucide-react'
-import { Button } from './ui/button'
-import { ScrollArea, ScrollBar } from './ui/scroll-area'
-import featureToggles from '../feature-toggle.json'
+import { Plus, TrendingUp } from "lucide-react";
+import { Button } from "./ui/button";
+import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
-export function TagsSection() {
-  const { tagFilterSection } = featureToggles;
+export async function TagsSection() {
   const tags = [
-    'Israel-Hamas Conflict',
-    'European Politics',
-    'Newspaper Front Pages',
-    'European Economy',
-    'Russia Politics',
-    'UK Politics',
-    'Christmas',
-    'New Year',
-    'Crime',
-    'Vladimir Putin',
-  ]
-
-  if (!tagFilterSection) return null;
+    "Israel-Hamas Conflict",
+    "European Politics",
+    "Newspaper Front Pages",
+    "European Economy",
+    "Russia Politics",
+    "UK Politics",
+    "Christmas",
+    "New Year",
+    "Crime",
+    "Vladimir Putin",
+  ];
 
   return (
     <div className="w-full sticky top-16 z-10 bg-background border-b">
@@ -30,7 +26,12 @@ export function TagsSection() {
               <span className="sr-only">Trending</span>
             </Button>
             {tags.map((tag) => (
-              <Button key={tag} variant="outline" size="sm" className="rounded-full flex items-center">
+              <Button
+                key={tag}
+                variant="outline"
+                size="sm"
+                className="rounded-full flex items-center"
+              >
                 <span className="mr-1">{tag}</span>
                 <Plus className="h-4 w-4" />
               </Button>
@@ -40,5 +41,5 @@ export function TagsSection() {
         </ScrollArea>
       </div>
     </div>
-  )
+  );
 }

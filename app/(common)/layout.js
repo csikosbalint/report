@@ -6,11 +6,12 @@ import { AdWrapper } from '../../components/wrapper-ad'
 import '../globals.css'
 import MainHorizontalLayout from '@/components/layouts/MainHorizontalLayout'
 import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
-import featureToggles from '../../feature-toggle.json'
+import { tagFilterSectionFlag, showPromotionFlag, geolocationFlag } from '@/lib/flags'
 
-export default function RootLayout ({ children }) {
-  const { showPromotion, geolocation, darkMode, edition, tagFilterSection } = featureToggles;
-
+export default async function RootLayout ({ children }) {
+  const tagFilterSection = await tagFilterSectionFlag()
+  const showPromotion = await showPromotionFlag()
+  const geolocation = await geolocationFlag()
   return (
     <MainHorizontalLayout>
       {showPromotion && (
