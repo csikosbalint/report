@@ -17,8 +17,9 @@ export function NavigationSection() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className="text-sm font-medium transition-colors hover:text-primary flex items-center"
               >
+                {item.icon}
                 {item.label}
               </Link>
             ))}
@@ -28,4 +29,3 @@ export function NavigationSection() {
     </nav>
   )
 }
-

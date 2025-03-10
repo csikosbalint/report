@@ -9,6 +9,8 @@ import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
 import { showPromotion, geolocation, notification, darkMode, edition, tagFilterSection } from '@/lib/flags'
 
 export default function RootLayout ({ children }) {
+  const { showPromotion, geolocation, darkMode, edition, tagFilterSection } = featureToggles;
+
   return (
     <MainHorizontalLayout>
       {showPromotion && (
@@ -19,7 +21,7 @@ export default function RootLayout ({ children }) {
         />
       )}
       {geolocation && <SettingsSection />}
-      {notification && <NavigationSection />}
+      <NavigationSection />
       {tagFilterSection && <TagsSection />}
       <ContentVerticalLayout>
         <div className='shrink-0 bg-rose-200 hidden xl:block'>
