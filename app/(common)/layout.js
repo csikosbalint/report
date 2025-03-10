@@ -9,7 +9,7 @@ import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
 import featureToggles from '../../feature-toggle.json'
 
 export default function RootLayout ({ children }) {
-  const { showPromotion, geolocation, notification, darkMode, edition, tagFilterSection } = featureToggles;
+  const { showPromotion, geolocation, darkMode, edition, tagFilterSection } = featureToggles;
 
   return (
     <MainHorizontalLayout>
@@ -21,7 +21,7 @@ export default function RootLayout ({ children }) {
         />
       )}
       {geolocation && <SettingsSection />}
-      {notification && <NavigationSection />}
+      <NavigationSection />
       {tagFilterSection && <TagsSection />}
       <ContentVerticalLayout>
         <div className='shrink-0 bg-rose-200 hidden xl:block'>
