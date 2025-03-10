@@ -9,11 +9,9 @@ import {
   SelectTrigger,
   SelectValue
 } from './ui/select'
-import featureToggles from '../feature-toggle.json'
+import { geolocation, notification, darkMode, edition } from '@/lib/flags'
 
 export function SettingsSection () {
-  const { geolocation, notification, darkMode, edition } = featureToggles;
-
   return (
     <div className='w-full bg-secondary py-1 border-b'>
       <div className='max-w-[var(--max-width-total)] mx-auto'>
