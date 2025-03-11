@@ -2,7 +2,7 @@ const STRAPI_API_BASE_URL = "http://su8ishee.ddns.net:1337/api";
 
 async function fetchFromStrapiAPI(endpoint, options = {}) {
   const url = `${STRAPI_API_BASE_URL}${endpoint}?populate=*`;
-  const { revalidate = 86400, tags = [] } = options;
+  const { revalidate = 0, tags = [] } = options;
 
   console.log(`Fetching from Strapi API: ${url}`);
   console.time(`fetch-${endpoint}`);
