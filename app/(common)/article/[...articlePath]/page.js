@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SectionArticleRelated } from "@/components/section-article-related";
-import { decode } from "html-entities";
-import parse from "node-html-parser";
 import { fetchPost, fetchPosts } from "@/builders/post";
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import Article from "@/components/article";
 
 export async function generateStaticParams() {
   const articles = await fetchPosts();
@@ -13,7 +12,7 @@ export async function generateStaticParams() {
       `${new Date(post.published).getFullYear()}`,
       `${new Date(post.published).getMonth()}`,
       `${new Date(post.published).getDate()}`,
-      `${post.blog.id}-${post.id}`,
+      `${post.id}`,
     ],
   }));
 }
@@ -44,15 +43,9 @@ async function getRelatedStories(refArticle) {
 export default async function ArticlePage({ params }) {
   const { articlePath } = await params;
   const article = await fetchPost({
-    blogId: articlePath[articlePath.length - 1].split("-")[0],
-    postId: articlePath[articlePath.length - 1].split("-")[1],
+    documentId: articlePath[articlePath.length - 1]
   });
   const relatedStories = await getRelatedStories(article);
-  const content = parse(article.content);
-  const description = content.querySelector("h3");
-  description?.remove();
-  const subtitle = content.querySelector("h1");
-  subtitle?.remove();
   return (
     <div>
       <article className="space-y-8">
@@ -61,7 +54,7 @@ export default async function ArticlePage({ params }) {
             {article.title}
           </h1>
           <p className="text-xl text-muted-foreground">
-            {description.innerText}
+            What is this?
           </p>
           <div className="flex items-center space-x-4">
             <Avatar>
@@ -84,10 +77,9 @@ export default async function ArticlePage({ params }) {
           </div>
         </header>
 
-        <div
-          className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: decode(content.innerHTML) }}
-        ></div>
+        <div>
+          <Article content={article.content} />
+        </div>
       </article>
 
       <div className="flex justify-center space-x-4">

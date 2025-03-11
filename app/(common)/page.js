@@ -10,23 +10,15 @@ import { LABEL_FEATURED, LABEL_INDEPTH, LABEL_LATEST, LABEL_MAIN, LABEL_REGION_E
 export default async function Home() {
   const posts = await fetchPosts();
   const articles = posts.map((post) => {
-    const subtitle = decode(parse(post.content).querySelector("h1")?.innerText);
-    const description = decode(
-      parse(post.content).querySelector("h3")?.innerText
-    );
-    const mainImage = decode(
-      parse(post.content).querySelector("img")?.getAttribute("src")
-    );
-    console.log(parse(post.content).querySelector("img")?.getAttribute("src"));
     return {
       title: post.title,
-      image: mainImage || "/placeholder.svg?height=500&width=1000",
-      description,
+      image: "/placeholder.svg?height=500&width=1000",
+      description: post.description,
       date: post.published,
       readTime: "5 min read",
       labels: post.labels,
       tags: post.labels.filter((label) => validTags.includes(label)),
-      link: `/article/${new Date(post.published).getFullYear()}/${new Date(post.published).getMonth()}/${new Date(post.published).getDate()}/${new UrlSafeString().generate(post.title)}/${post.blog.id}-${post.id}`,
+      link: `/article/${new Date(post.published).getFullYear()}/${new Date(post.published).getMonth()}/${new Date(post.published).getDate()}/${new UrlSafeString().generate(post.title)}/${post.id}`,
     };
   });
 
