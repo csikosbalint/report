@@ -1,7 +1,5 @@
 import { Card, CardContent } from "../../components/ui/card";
 import ArticlePreview from "@/components/article-preview";
-import { parse } from "node-html-parser";
-import { decode } from "html-entities";
 import UrlSafeString from "url-safe-string";
 import { fetchPosts } from "@/builders/post";
 import { validTags } from "@/builders/tag";

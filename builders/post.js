@@ -1,23 +1,31 @@
-const STRAPI_API_BASE_URL = "http://su8ishee.ddns.net:1337/api";
+const STRAPI_API_BASE_URL = process.env.STRAPI_API_URL;
 
 async function fetchFromStrapiAPI(endpoint, options = {}) {
   const url = `${STRAPI_API_BASE_URL}${endpoint}?populate=*`;
   const { revalidate = 0, tags = [] } = options;
-
   console.log(`Fetching from Strapi API: ${url}`);
-  console.time(`fetch-${endpoint}`);
 
-  const res = await fetch(url, {
-    next: {
-      revalidate,
-      tags,
-    },
-  });
+  try {
+    const res = await fetch(url, {
+      next: {
+        revalidate,
+        tags,
+      },
+      // Add timeout to prevent hanging
+      signal: AbortSignal.timeout(5000)
+    });
 
-  const data = await res.json();
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
 
-  console.timeEnd(`fetch-${endpoint}`);
-  return data;
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(`Failed to fetch from ${url}:`, error);
+    // Return empty data structure instead of throwing
+    return { data: [] };
+  }
 }
 
 export async function fetchPosts() {
