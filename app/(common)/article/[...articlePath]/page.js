@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SectionArticleRelated } from "@/components/section-article-related";
 import { fetchPost, fetchPosts } from "@/builders/post";
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import Article from "@/components/article";
 
 export async function generateStaticParams() {
@@ -53,9 +52,6 @@ export default async function ArticlePage({ params }) {
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}
           </h1>
-          <p className="text-xl text-muted-foreground">
-            What is this?
-          </p>
           <div className="flex items-center space-x-4">
             <Avatar>
               <AvatarImage
@@ -78,7 +74,7 @@ export default async function ArticlePage({ params }) {
         </header>
 
         <div>
-          <Article content={article.content} />
+          <Article content={article?.content} />
         </div>
       </article>
 

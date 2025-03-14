@@ -1,4 +1,4 @@
-const STRAPI_API_BASE_URL = process.env.STRAPI_API_URL;
+const STRAPI_API_BASE_URL = process.env.STRAPI_API_BASE_URL;
 
 async function fetchFromStrapiAPI(endpoint, options = {}) {
   const url = `${STRAPI_API_BASE_URL}${endpoint}?populate=*`;
@@ -61,7 +61,7 @@ export async function fetchPost({ documentId }) {
   return {
     id: article.id,
     title: article.Title,
-    content: article.Article,
+    content: article.Content,
     published: article.publishedAt,
     author: {
       displayName: article.Author?.data?.attributes?.name || "Anonymous"

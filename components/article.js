@@ -12,7 +12,7 @@ import Image from "next/image";
 export default async function Article({ content }) {
     const markdownResult = await remark()
         .use(html)
-        .process('# Error: No content found');
+        .process(content);
     // Process HTML to React components using rehype
     const articleContentJsx = await unified()
         .use(rehypeParse, { fragment: true })
@@ -32,7 +32,6 @@ export default async function Article({ content }) {
 
     return (
         <article className="prose">
-            <h1>Article</h1>
             {articleContentJsx.result}
         </article>
     )

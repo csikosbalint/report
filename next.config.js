@@ -3,10 +3,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "blogger.googleusercontent.com",
-        port: "",
-        pathname: "/img/**",
+        protocol: "http",
+        hostname: "su8ishee.ddns.net",
+        port: "1337",
+        pathname: "/uploads/**",
       },
     ],
   },
