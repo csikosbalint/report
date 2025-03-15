@@ -1,4 +1,7 @@
 const STRAPI_API_BASE_URL = process.env.STRAPI_API_BASE_URL;
+import { strapi } from '@strapi/client';
+
+const client = strapi({ baseURL: 'http://localhost:1337/api' });
 
 async function fetchFromStrapiAPI(endpoint, options = {}) {
   const url = `${STRAPI_API_BASE_URL}${endpoint}?populate=*`;
