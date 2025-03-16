@@ -28,7 +28,7 @@ export default async function RootLayout ({ children }) {
         <div className='shrink-0 bg-rose-200 hidden xl:block'>
           <AdWrapper position='left' />
         </div>
-        <main className='shrink px-4 py-6'>
+        <main className='shrink px-4 py-4 w-full'>
           {children}
         </main>
         <div className='shrink-0 bg-sky-200 hidden md:block'>

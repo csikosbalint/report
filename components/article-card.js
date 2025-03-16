@@ -51,16 +51,11 @@ export default function ArticleCard({
       <Image
         priority
         src={
-          image?.formats?.medium?.url || "/placeholder.svg?height=500&width=1000"
+          image?.formats?.large?.url || "/placeholder.svg?height=500&width=1000"
         }
-        alt={title}
-        width={imageSize[size].width}
-        height={imageSize[size].height}
-        className={cn("object-cover", {
-          "rounded-sm": size !== "xl",
-          "w-full": size === "l" || size === "xl",
-        })}
-        style={size === "xl" ? { objectPosition: "center" } : {}}
+        fill
+        objectFit="cover"
+        alt={image?.alternativeText || title}
       />
     );
     return img;
@@ -71,7 +66,7 @@ export default function ArticleCard({
     "text-lg": size === "s",
     "text-xl": size === "m",
     "text-2xl": size === "l",
-    "text-3xl": size === "xl",
+    "text-5xl": size === "xl",
     "hover:underline": size !== "xs",
   });
 
@@ -135,14 +130,16 @@ export default function ArticleCard({
 
   const content = (
     <>
-      {renderImage()}
+      <div className="relative h-full w-1/4">
+        {renderImage()}
+      </div>
       <span className={cn(titleClass, "line-clamp-2 block")}>
         {truncateTitle(title, maxTitleLength[size])}
       </span>
       {size !== "xs" && (
         <>
           <div className="flex flex-wrap gap-2 mb-2">
-            {tags.map(({label: tag}) => (
+            {tags.map(({ label: tag }) => (
               <Badge key={tag} variant="secondary">
                 {tag}
               </Badge>
@@ -168,12 +165,41 @@ export default function ArticleCard({
     <Link
       href={link}
       className={cn(
-        "block transition-colors duration-200 hover:bg-gray-50",
+        "block transition-colors duration-200 hover:bg-gray-50 h-full w-full",
         variants[size],
         className
       )}
     >
-      {size === "xs" && content}
+      {size === "xs" && (<>
+        <div className="relative h-full w-1/4">
+          {renderImage()}
+        </div>
+        <span className={cn(titleClass, "line-clamp-2 block")}>
+          {truncateTitle(title, maxTitleLength[size])}
+        </span>
+        {size !== "xs" && (
+          <>
+            <div className="flex flex-wrap gap-2 mb-2">
+              {tags.map(({ label: tag }) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+            <div className="flex items-center text-sm text-muted-foreground gap-3">
+              <time className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {shortDate}
+              </time>
+              <div className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                {shortReadTime}
+              </div>
+            </div>
+            {renderDescription()}
+          </>
+        )}
+      </>)}
       {size === "s" && <div className="p-4">{content}</div>}
       {size === "m" && (
         <div className="p-4 flex items-stretch gap-4">
@@ -186,31 +212,11 @@ export default function ArticleCard({
         </div>
       )}
       {size === "xl" && (
-        <div className="relative group">
+        <div className="relative group h-full w-full">
           {renderImage()}
-          <div className="absolute inset-0 bg-gray-200 bg-opacity-60 group-hover:bg-gray-700 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white p-6 flex flex-col justify-between">
+          <div className="absolute inset-0 bg-gray-200 bg-opacity-60 group-hover:bg-gray-500 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white p-6 flex flex-col justify-between">
             <div className="flex justify-between items-start">
-              <div className="flex gap-2">
-                {tags.map(({label: tag}) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="bg-white text-black group-hover:bg-gray-200 group-hover:text-gray-800"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <time className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  {shortDate}
-                </time>
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  {shortReadTime}
-                </div>
-              </div>
+              <div></div>
             </div>
             <div>
               <h1 className={cn(titleClass)}>
