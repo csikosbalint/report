@@ -54,7 +54,7 @@ export default function ArticleCard({
           image?.formats?.large?.url || "/placeholder.svg?height=500&width=1000"
         }
         fill
-        objectFit="cover"
+        style={{ objectFit: "cover" }}
         alt={image?.alternativeText || title}
       />
     );
@@ -74,7 +74,7 @@ export default function ArticleCard({
     xs: 30,
     s: 50,
     m: 70,
-    l: 90,
+    l: 80,
     xl: 110,
   };
 
@@ -129,10 +129,7 @@ export default function ArticleCard({
   const { shortDate, shortReadTime } = formatDateAndTime(date, readTime);
 
   const content = (
-    <>
-      <div className="relative h-full w-1/4">
-        {renderImage()}
-      </div>
+    <div className="w-full">
       <span className={cn(titleClass, "line-clamp-2 block")}>
         {truncateTitle(title, maxTitleLength[size])}
       </span>
@@ -158,7 +155,7 @@ export default function ArticleCard({
           {renderDescription()}
         </>
       )}
-    </>
+    </div>
   );
 
   return (
@@ -207,8 +204,35 @@ export default function ArticleCard({
         </div>
       )}
       {size === "l" && (
-        <div className="p-6 space-y-4">
-          <div className="flex flex-col space-y-4">{content}</div>
+        <div className="flex p-2 gap-4 h-full w-full">
+          <div className="basis-4/5 flex flex-col">
+            <div className="flex flex-wrap gap-2 mb-2">
+              {tags.map(({ label: tag }) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+            <div className="w-full space-y-2">
+              <span className={cn(titleClass, "line-clamp-2 block")}>
+                {truncateTitle(title, maxTitleLength[size])}
+              </span>
+
+              <div className="flex items-center text-sm text-muted-foreground gap-3">
+                <time className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  {shortDate}
+                </time>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  {shortReadTime}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="basis-1/5 relative group h-full w-1/3 ">
+            {renderImage()}
+          </div>
         </div>
       )}
       {size === "xl" && (

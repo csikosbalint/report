@@ -13,9 +13,9 @@ export default async function Home() {
     )
     
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 w-[var(--max-width)]">
       {/* Main Article Card */}
-      <section className="w-[var(--max-width)]">
+      <section>
           <div className="h-96 w-full">
             <ArticleCard size="xl" {...mainpage.main} />
           </div>
@@ -36,22 +36,18 @@ export default async function Home() {
           </div>
         </div>
       </section> */}
-
-      <div className="w-full h-px bg-border" />
-
       {/* Latest Artciles */}
-      <section className="space-y-6">
-        <h2 className="text-3xl font-bold tracking-tight">Latest News</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <section>
+        <div className="flex flex-col h-fit w-full gap-4">
           {mainpage.latests
-            .sort((a, b) => b.published - a.published)
+            .sort((a, b) => b.publishedAt - a.publishedAt)
             .map((article, index) => (
-              <ArticleCard key={index} size="xs" {...article} />
+              <div className="h-36 w-full" key={index}>
+                <ArticleCard size="l" {...article} />
+              </div>
             ))}
         </div>
       </section>
-
-      <div className="w-full h-px bg-border" />
 
       {/* In-Depth Analysis */}
       <section className="space-y-6">
