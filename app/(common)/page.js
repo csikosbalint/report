@@ -16,10 +16,12 @@ export default async function Home() {
     <div className="space-y-12">
       {/* Main Article Card */}
       <section className="w-[var(--max-width)]">
-          <ArticleCard size="xl" {...mainpage.main} />
+          <div className="h-96 w-full">
+            <ArticleCard size="xl" {...mainpage.main} />
+          </div>
       </section>
       {/* Featured Article */}
-      <section className="space-y-6">
+      {/* <section className="space-y-6">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-6">
             {articles
@@ -33,7 +35,7 @@ export default async function Home() {
               ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div className="w-full h-px bg-border" />
 
@@ -65,7 +67,7 @@ export default async function Home() {
       <div className="w-full h-px bg-border" />
 
       {/* Opinion Section */}
-      <section className="space-y-6">
+      {/* <section className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">Opinion</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
@@ -91,7 +93,7 @@ export default async function Home() {
             </Card>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <div className="w-full h-px bg-border" />
 
