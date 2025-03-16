@@ -40,7 +40,6 @@ export default async function Home() {
       <section>
         <div className="flex flex-col h-fit w-full gap-4">
           {mainpage.latests
-            .sort((a, b) => b.publishedAt - a.publishedAt)
             .map((article, index) => (
               <div className="h-36 w-full" key={index}>
                 <ArticleCard size="l" {...article} />
