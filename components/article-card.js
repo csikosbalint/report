@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import PropTypes from "prop-types";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
@@ -18,7 +17,7 @@ function truncateTitle(title, maxLength) {
   return title.slice(0, maxLength - 1) + "…";
 }
 
-export default function ArticlePreview({
+export default function ArticleCard({
   size = "m",
   title = "Article Title",
   image = "/placeholder.svg?height=500&width=1000",
@@ -52,8 +51,7 @@ export default function ArticlePreview({
       <Image
         priority
         src={
-          image ||
-          `https://via.placeholder.com/${imageSize[size].width}x${imageSize[size].height}`
+          image?.formats?.medium?.url || "/placeholder.svg?height=500&width=1000"
         }
         alt={title}
         width={imageSize[size].width}
@@ -144,7 +142,7 @@ export default function ArticlePreview({
       {size !== "xs" && (
         <>
           <div className="flex flex-wrap gap-2 mb-2">
-            {tags.map((tag) => (
+            {tags.map(({label: tag}) => (
               <Badge key={tag} variant="secondary">
                 {tag}
               </Badge>
@@ -193,7 +191,7 @@ export default function ArticlePreview({
           <div className="absolute inset-0 bg-gray-200 bg-opacity-60 group-hover:bg-gray-700 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white p-6 flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <div className="flex gap-2">
-                {tags.map((tag) => (
+                {tags.map(({label: tag}) => (
                   <Badge
                     key={tag}
                     variant="secondary"
@@ -226,15 +224,3 @@ export default function ArticlePreview({
   );
 }
 
-ArticlePreview.propTypes = {
-  size: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  date: PropTypes.string,
-  readTime: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.string),
-  description: PropTypes.string,
-  className: PropTypes.string,
-  showPicture: PropTypes.bool,
-  link: PropTypes.string.isRequired,
-};

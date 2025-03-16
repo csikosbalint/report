@@ -1,5 +1,6 @@
 import UrlSafeString from "url-safe-string";
-
+import TagDTO from "./TagDTO";
+import ImageDTO from "./ImageDTO";
 
 /**
  * Represents an article data transfer object.
@@ -15,6 +16,8 @@ export default class ArticleDTO {
      * @param {string} rawArticle.Description - The description of the article.
      * @param {string} rawArticle.Content - The content of the article.
      * @param {string} rawArticle.publishedAt - The publication date of the article.
+     * @param {TagDTO[]} rawArticle.Tags - The tags associated with the article.
+     * @param {ImageDTO} rawArticle.Image - The image associated with the article.
      */
     constructor(rawArticle) {
         /**
@@ -28,9 +31,9 @@ export default class ArticleDTO {
         this.title = rawArticle.Title;
 
         /**
-         * @type {string}
+         * @type {ImageDTO}
          */
-        this.image = "/placeholder.svg?height=500&width=1000";
+        this.image = rawArticle.Image ? new ImageDTO(rawArticle.Image) : null;
 
         /**
          * @type {string}
@@ -48,9 +51,9 @@ export default class ArticleDTO {
         this.content = rawArticle.Content;
 
         /**
-         * @type {string[]}
+         * @type {TagDTO[]}
          */
-        this.labels = ["hu", "eu", "migráció", "egészség", "család", "politika"];
+        this.tags = rawArticle?.Tags ? rawArticle?.Tags.map((tag) => new TagDTO(tag)) : [];
 
         /**
          * @type {string}

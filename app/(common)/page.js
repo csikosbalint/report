@@ -1,33 +1,30 @@
 import { Card, CardContent } from "../../components/ui/card";
-import ArticlePreview from "@/components/article-preview";
-import { LABEL_FEATURED, LABEL_INDEPTH, LABEL_LATEST, LABEL_MAIN, LABEL_REGION_EUROPE, LABEL_REGION_EUROPE_HUNGARY } from "@/builders/label";
-import { rawArticles } from "@/builders/cms";
+import ArticleCard from "@/components/article-card";
+import { rawArticles, rawMainPage } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
+import MainPageDTO from "@/builders/models/MainPageDTO";
 
 export default async function Home() {
   const articles = await rawArticles()
     .then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
     ))
-
+    const mainpage = await rawMainPage()
+    .then(({ data: rawMainPage }) => new MainPageDTO(rawMainPage)
+    )
+    
   return (
     <div className="space-y-12">
-      {/* Main Article */}
+      {/* Main Article Card */}
       <section className="w-[var(--max-width)]">
-        {articles.find((article) => article.labels.includes(LABEL_MAIN)) &&
-          [articles.find((article) => article.labels.includes(LABEL_MAIN))].map(
-            (article, index) => (
-              <ArticlePreview key={index} size="xl" {...article} />
-            )
-          )}
+          <ArticleCard size="xl" {...mainpage.main} />
       </section>
       {/* Featured Article */}
       <section className="space-y-6">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-6">
             {articles
-              .filter((article) => article.labels.includes(LABEL_FEATURED))
               .map((article, index) => (
-                <ArticlePreview
+                <ArticleCard
                   key={index}
                   size="m"
                   showPicture={false}
@@ -40,14 +37,14 @@ export default async function Home() {
 
       <div className="w-full h-px bg-border" />
 
-      {/* Latest News Section */}
+      {/* Latest Artciles */}
       <section className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tight">Latest News</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {articles
-            .sort((a, b) => new Date(b.published) - new Date(a.published))
+          {mainpage.latests
+            .sort((a, b) => b.published - a.published)
             .map((article, index) => (
-              <ArticlePreview key={index} size="xs" {...article} />
+              <ArticleCard key={index} size="xs" {...article} />
             ))}
         </div>
       </section>
@@ -59,9 +56,8 @@ export default async function Home() {
         <h2 className="text-3xl font-bold tracking-tight">In-Depth Analysis</h2>
         <div className="grid gap-6 lg:grid-cols-3">
           {articles
-            .filter((article) => article.labels.includes(LABEL_INDEPTH))
             .map((article, index) => (
-              <ArticlePreview key={index} size="s" {...article} />
+              <ArticleCard key={index} size="s" {...article} />
             ))}
         </div>
       </section>
@@ -104,13 +100,8 @@ export default async function Home() {
         <h2 className="text-3xl font-bold tracking-tight">Regional News</h2>
         <div className="grid gap-6 md:grid-cols-2">
           {articles
-            .filter(
-              (article) =>
-                article.labels.includes(LABEL_REGION_EUROPE) ||
-                article.labels.includes(LABEL_REGION_EUROPE_HUNGARY)
-            )
             .map((article, index) => (
-              <ArticlePreview
+              <ArticleCard
                 key={index}
                 size="s"
                 showPicture={false}
