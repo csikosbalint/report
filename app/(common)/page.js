@@ -1,26 +1,13 @@
 import { Card, CardContent } from "../../components/ui/card";
 import ArticlePreview from "@/components/article-preview";
-import { parse } from "node-html-parser";
-import { decode } from "html-entities";
-import UrlSafeString from "url-safe-string";
-import { fetchPosts } from "@/builders/post";
-import { validTags } from "@/builders/tag";
 import { LABEL_FEATURED, LABEL_INDEPTH, LABEL_LATEST, LABEL_MAIN, LABEL_REGION_EUROPE, LABEL_REGION_EUROPE_HUNGARY } from "@/builders/label";
+import { rawArticles } from "@/builders/cms";
+import ArticleDTO from "@/builders/models/ArticleDTO";
 
 export default async function Home() {
-  const posts = await fetchPosts();
-  const articles = posts.map((post) => {
-    return {
-      title: post.title,
-      image: "/placeholder.svg?height=500&width=1000",
-      description: post.description,
-      date: post.published,
-      readTime: "5 min read",
-      labels: post.labels,
-      tags: post.labels.filter((label) => validTags.includes(label)),
-      link: `/article/${new Date(post.published).getFullYear()}/${new Date(post.published).getMonth()}/${new Date(post.published).getDate()}/${new UrlSafeString().generate(post.title)}/${post.id}`,
-    };
-  });
+  const articles = await rawArticles()
+    .then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
+    ))
 
   return (
     <div className="space-y-12">

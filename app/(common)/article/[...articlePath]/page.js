@@ -1,20 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SectionArticleRelated } from "@/components/section-article-related";
-import { fetchPost, fetchPosts } from "@/builders/post";
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import Article from "@/components/article";
+import { rawArticle, rawArticles } from "@/builders/cms";
+import ArticleDTO from "@/builders/models/ArticleDTO";
 
 export async function generateStaticParams() {
-  const articles = await fetchPosts();
-  return articles.map((post) => ({
-    articlePath: [
-      `${new Date(post.published).getFullYear()}`,
-      `${new Date(post.published).getMonth()}`,
-      `${new Date(post.published).getDate()}`,
-      `${post.id}`,
-    ],
-  }));
+  return await rawArticles()
+    .then(({ data }) => data.map((rawArticle) => ({
+      articlePath: [
+        `${new Date(rawArticle.publishedAt).getFullYear()}`,
+        `${new Date(rawArticle.publishedAt).getMonth()}`,
+        `${new Date(rawArticle.publishedAt).getDate()}`,
+        `${rawArticle.documentId}`,
+      ],
+    })
+    ))
 }
 
 async function getRelatedStories(refArticle) {
@@ -42,9 +43,9 @@ async function getRelatedStories(refArticle) {
 
 export default async function ArticlePage({ params }) {
   const { articlePath } = await params;
-  const article = await fetchPost({
+  const article = await rawArticle({
     documentId: articlePath[articlePath.length - 1]
-  });
+  }).then(({ data }) => new ArticleDTO(data));
   const relatedStories = await getRelatedStories(article);
   return (
     <div>
@@ -53,9 +54,6 @@ export default async function ArticlePage({ params }) {
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}
           </h1>
-          <p className="text-xl text-muted-foreground">
-            What is this?
-          </p>
           <div className="flex items-center space-x-4">
             <Avatar>
               <AvatarImage
@@ -78,7 +76,7 @@ export default async function ArticlePage({ params }) {
         </header>
 
         <div>
-          <Article content={article.content} />
+          <Article content={article?.content} />
         </div>
       </article>
 

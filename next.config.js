@@ -1,20 +1,14 @@
-// @ts-check
 
-module.exports = async (phase, { defaultConfig }) => {
-    /**
-     * @type {import('next').NextConfig}
-     */
-    const nextConfig = {
-      images: {
-        remotePatterns: [
-          {
-            protocol: "https",
-            hostname: "blogger.googleusercontent.com",
-            port: "",
-            pathname: "/img/**",
-          },
-        ],
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "su8ishee.ddns.net",
+        port: "1337",
+        pathname: "/uploads/**",
       },
-    };
-    return nextConfig
-}
+    ],
+  },
+};
+module.exports = nextConfig
