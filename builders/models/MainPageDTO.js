@@ -5,12 +5,13 @@ import ArticleDTO from "./ArticleDTO";
  * @class
  */
 export default class MainPageDTO {
-    
+
     /**
      * Creates an instance of MainPageDTO.
      * @param {Object} rawMainPage - The raw main page data.
      * @param {Object} rawMainPage.main - The main article data.
      * @param {Object[]} rawMainPage.latest - The latest articles data.
+     * @param {Object[]} rawMainPage.tops - The top articles data.
      */
     constructor(rawMainPage) {
         /**
@@ -22,5 +23,10 @@ export default class MainPageDTO {
          * @type {ArticleDTO[]}
          */
         this.latests = rawMainPage?.latests ? rawMainPage.latests.map((rawArticle) => new ArticleDTO(rawArticle)) : [];
+
+        /**
+         * @type {ArticleDTO[]}
+         */
+        this.tops = rawMainPage?.tops ? rawMainPage.tops.map((rawArticle) => new ArticleDTO(rawArticle)) : [];
     }
 }
