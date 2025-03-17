@@ -197,7 +197,26 @@ export default function ArticleCard({
           </>
         )}
       </>)}
-      {size === "s" && <div className="p-4">{content}</div>}
+      {size === "s" && (
+        <div className="flex-row p-2 gap-4 h-full w-full">
+          <div className="w-full">
+            <span className={cn(titleClass, "line-clamp-2 block")}>
+              {truncateTitle(title, maxTitleLength[size])}
+            </span>
+
+            <div className="flex items-center text-sm text-muted-foreground gap-3">
+              <time className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {shortDate}
+              </time>
+              <div className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                {shortReadTime}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {size === "m" && (
         <div className="p-4 flex items-stretch gap-4">
           <div className="flex-grow space-y-2">{content}</div>
