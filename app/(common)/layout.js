@@ -3,8 +3,6 @@ import { SettingsSection } from '../../components/section-settings'
 import { NavigationSection } from '../../components/section-navigation'
 import { TagsSection } from '../../components/section-tags'
 import '../globals.css'
-import MainHorizontalLayout from '@/components/layouts/MainHorizontalLayout'
-import ContentVerticalLayout from '@/components/layouts/ContentVerticalLayout'
 
 export default async function RootLayout ({ children }) {
   const tagFilterSection = process.env.FLAG_TAGFILTER;
