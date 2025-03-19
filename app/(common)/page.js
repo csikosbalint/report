@@ -1,24 +1,22 @@
-import { Card, CardContent } from "../../components/ui/card";
 import ArticleCard from "@/components/article-card";
 import { rawArticles, rawMainPage } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
 import MainPageDTO from "@/builders/models/MainPageDTO";
 
 export default async function Home() {
-  const articles = await rawArticles()
-    .then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
-    ))
-    const mainpage = await rawMainPage()
-    .then(({ data: rawMainPage }) => new MainPageDTO(rawMainPage)
-    )
-    
+  const articles = await rawArticles().then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
+  ))
+
+  const mainpage = await rawMainPage().then(({ data: rawMainPage }) => new MainPageDTO(rawMainPage)
+  )
+
   return (
     <div className="space-y-12 w-[var(--max-width)]">
       {/* Main Article Card */}
       <section>
-          <div className="h-96 w-full">
-            <ArticleCard size="xl" {...mainpage.main} />
-          </div>
+        <div className="h-96 w-full">
+          <ArticleCard size="xl" {...mainpage.main} />
+        </div>
       </section>
       {/* Featured Article */}
       {/* <section className="space-y-6">
