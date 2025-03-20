@@ -10,7 +10,7 @@ export default async function RootLayout ({ children }) {
   const geolocation = process.env.FLAG_GEOLOCATION;
   return (
     <div className="flex flex-col h-screen w-screen min-h-screen items-center text-sm sm:text-md ">
-      <div>
+      <div className="w-full flex justify-center bg-primary">
         {showPromotion && (
           <PromotionSection
             text="Want a second opinion on the news that you're reading?"

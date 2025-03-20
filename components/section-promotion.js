@@ -4,28 +4,31 @@ import { useState } from 'react'
 import { X } from 'lucide-react'
 import { Button } from './ui/button'
 
-export function PromotionSection ({ text, buttonText, link }) {
+export function PromotionSection({ text, buttonText, link }) {
   const [isVisible, setIsVisible] = useState(true)
 
   if (!isVisible) return null
 
   return (
-    <div className='max-w-[var(--max-width-total)] flex w-full p-2 text-primary-foreground bg-primary justify-between items-center relative'>
-      <div className='w-full mr-8'>
-        <div className='flex items-center justify-center gap-2 sm:gap-8'>
-          <p className='text-sm font-medium'>
-            {text}
-          </p>
-          <Button variant='secondary' size='sm' onClick={() => window.location.href = link}>
-            {buttonText}
-          </Button>
-        </div>
+    <div className='max-w-[var(--max-width-total)] flex py-2 pl-2 pr-8 text-primary-foreground relative'>
+      <div className='flex items-center justify-center gap-2 sm:gap-8'>
+        <p className='text-sm md:text-lg font-semibold truncate max-w-[calc(var(--max-width-total)-10rem)]'>
+          {text}
+        </p>
+        <Button
+          className="font-semibold"
+          variant='secondary'
+          size='sm'
+          onClick={() => window.location.href = link}>
+          {buttonText}
+        </Button>
+        <X
+          onClick={() => setIsVisible(false)}
+          className='text-primary-foreground font-semibold h-4 w-4 hover:cursor-pointer top-1 right-1 absolute'
+        />
+        <span className='sr-only'>Dismiss</span>
       </div>
-      <X
-        onClick={() => setIsVisible(false)}
-        className='text-primary-foreground h-4 w-4 hover:cursor-pointer absolute top-2 right-2'
-      />
-      <span className='sr-only'>Dismiss</span>
+
     </div>
   )
 }
