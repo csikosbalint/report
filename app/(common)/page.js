@@ -1,7 +1,10 @@
+// export const revalidate = 0
+
 import ArticleCard from "@/components/article-card";
 import { rawArticles, rawMainPage } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
 import MainPageDTO from "@/builders/models/MainPageDTO";
+import { Badge } from "@/components/ui/badge";
 
 export default async function Home() {
   const articles = await rawArticles()
@@ -11,17 +14,21 @@ export default async function Home() {
     .then(({ data: rawMainPage }) => new MainPageDTO(rawMainPage)
     )
 
+  const assumedTag = 'Europa'
+
   return (
     <div className="flex flex-col h-full w-full">
       <div className="flex flex-row h-full w-full">
         <div className="basis-1/3 h-full">
           <div className="flex-col h-full">
-            <div className="prose">
-              <h3 className="">Legnépszerűbb Írások</h3>
+            <div className="">
+              <h2 className="text-2xl underline font-bold tracking-tight">Legfrissebb Írások</h2>
               {/* Top Artciles */}
-              <section>
-                <div className="flex flex-col gap-8">
-                  {mainpage.tops
+              <section className="min-h-96">
+                <div className="flex flex-col">
+                  {mainpage.latests
+                    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+                    .slice(0, 3)
                     .map((article, index) => (
                       <div className="w-full" key={index}>
                         <ArticleCard size="s" {...article} showPicture={false} />
@@ -31,7 +38,7 @@ export default async function Home() {
                 </div>
               </section>
             </div>
-            <div className=" h-full">
+            <div className="h-full">
               AdUnit
             </div>
           </div>
@@ -40,17 +47,20 @@ export default async function Home() {
           <div className="flex-col">
             <div>
               {/* Main Article Card */}
-              <section>
-                <div className="h-96 w-full">
-                  <ArticleCard size="xl" {...mainpage.main} />
+              <section className="min-h-96">
+                <div className="">
+                  <div className="h-96 w-full">
+                    <ArticleCard size="xl" {...mainpage.main} />
+                  </div>
                 </div>
               </section>
             </div>
             <div>
               {/* Latest Artciles */}
-              <section>
-                <div className="flex flex-col gap-4">
-                  {mainpage.latests
+              <section className="min-h-96">
+                <div className="flex flex-col">
+                  {mainpage.tops
+                    .slice(0, 4)
                     .map((article, index) => (
                       <div className="h-36 w-full" key={index}>
                         <ArticleCard size="l" {...article} />
@@ -60,32 +70,19 @@ export default async function Home() {
               </section>
             </div>
           </div>
-          <div className="w-full h-px bg-border" />
         </div>
       </div>
+      <div className="w-full h-px bg-border" />
       <div className="">
         {/* In-Depth Analysis */}
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight">In-Depth Analysis</h2>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <h2 className="text-2xl underline font-bold tracking-tight">Minden, ami <Badge variant='outline' size='large'>#{assumedTag}</Badge></h2>
+          <div className="grid lg:grid-cols-3">
             {articles
+              .filter((article) => article.tags.find(({ label }) => label === assumedTag))
+              .slice(0, 4)
               .map((article, index) => (
-                <ArticleCard key={index} size="s" {...article} />
-              ))}
-          </div>
-        </section>
-        {/* Regional News */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold tracking-tight">Regional News</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {articles
-              .map((article, index) => (
-                <ArticleCard
-                  key={index}
-                  size="s"
-                  showPicture={false}
-                  {...article}
-                />
+                <ArticleCard key={index} size="l" {...article} />
               ))}
           </div>
         </section>

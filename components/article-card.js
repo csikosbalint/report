@@ -138,7 +138,7 @@ export default function ArticleCard({
           <div className="flex flex-wrap gap-2 mb-2">
             {tags.map(({ label: tag }) => (
               <Badge key={tag} variant="secondary">
-                {tag}
+                #{tag}
               </Badge>
             ))}
           </div>
@@ -179,7 +179,7 @@ export default function ArticleCard({
             <div className="flex flex-wrap gap-2 mb-2">
               {tags.map(({ label: tag }) => (
                 <Badge key={tag} variant="secondary">
-                  {tag}
+                  #{tag}
                 </Badge>
               ))}
             </div>
@@ -228,7 +228,7 @@ export default function ArticleCard({
             <div className="flex flex-wrap gap-2 mb-2">
               {tags.map(({ label: tag }) => (
                 <Badge key={tag} variant="outline">
-                  {tag}
+                  #{tag}
                 </Badge>
               ))}
             </div>

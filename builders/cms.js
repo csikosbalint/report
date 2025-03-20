@@ -23,6 +23,9 @@ async function rawMainPage(options) {
         },
         latests: {
             populate: "*"
+        },
+        tops: {
+            populate: "*"
         }
     } });
 }
