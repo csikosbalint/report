@@ -24,7 +24,7 @@ export function PromotionSection({ text, buttonText, link }) {
         </Button>
         <X
           onClick={() => setIsVisible(false)}
-          className='text-primary-foreground font-semibold h-4 w-4 hover:cursor-pointer top-0 right-1 absolute'
+          className='text-primary-foreground font-semibold h-4 w-4 hover:cursor-pointer top-1 right-1 absolute'
         />
         <span className='sr-only'>Dismiss</span>
       </div>
