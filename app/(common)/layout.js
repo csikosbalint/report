@@ -34,7 +34,7 @@ export default async function RootLayout({ children }) {
           {children}
         </main>
         <div className="basis-1/4 hidden md:block">
-          AdUnit
+          {/* <AdUnit /> */}
         </div>
       </div>
       <div className="flex w-full justify-center border-t-2">
