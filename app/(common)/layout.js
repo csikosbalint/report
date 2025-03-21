@@ -2,9 +2,10 @@ import { PromotionSection } from '../../components/section-promotion'
 import { SettingsSection } from '../../components/section-settings'
 import { NavigationSection } from '../../components/section-navigation'
 import { TagsSection } from '../../components/section-tags'
+import Footer from '../../components/footer'
 import '../globals.css'
 
-export default async function RootLayout ({ children }) {
+export default async function RootLayout({ children }) {
   const tagFilterSection = process.env.FLAG_TAGFILTER;
   const showPromotion = process.env.FLAG_PROMOTION;
   const geolocation = process.env.FLAG_GEOLOCATION;
@@ -33,7 +34,12 @@ export default async function RootLayout ({ children }) {
           {children}
         </main>
         <div className="basis-1/4 hidden md:block">
-        AdUnit
+          AdUnit
+        </div>
+      </div>
+      <div className="flex w-full justify-center border-t-2">
+        <div className="max-w-[var(--max-width-total)]">
+          <Footer />
         </div>
       </div>
     </div>
