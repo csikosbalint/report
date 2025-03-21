@@ -4,7 +4,6 @@ import { NavigationSection } from '../../components/section-navigation'
 import { TagsSection } from '../../components/section-tags'
 import Footer from '../../components/footer'
 import '../globals.css'
-import AdUnit from '@/components/ad-unit'
 
 export default async function RootLayout({ children }) {
   const tagFilterSection = process.env.FLAG_TAGFILTER;

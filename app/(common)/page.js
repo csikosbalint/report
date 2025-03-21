@@ -6,6 +6,7 @@ import ArticleDTO from "@/builders/models/ArticleDTO";
 import MainPageDTO from "@/builders/models/MainPageDTO";
 import { Badge } from "@/components/ui/badge";
 import AdUnit from "@/components/ad-unit";
+import { Suspense } from "react";
 
 export default async function Home() {
   const articles = await rawArticles()
@@ -40,6 +41,8 @@ export default async function Home() {
               </section>
             </div>
             <div className="w-full flex-grow">
+              <Suspense fallback={<div className="h-96 w-full" />}>
+              {/* Ad Unit */}
               <AdUnit>
                 <ins className="adsbygoogle"
                   style={{ display: "block" }}
@@ -48,6 +51,7 @@ export default async function Home() {
                   data-ad-format="auto"
                   data-full-width-responsive="true"></ins>
               </AdUnit>
+              </Suspense>
             </div>
           </div>
         </div>
