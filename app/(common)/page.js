@@ -5,6 +5,7 @@ import { rawArticles, rawMainPage } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
 import MainPageDTO from "@/builders/models/MainPageDTO";
 import { Badge } from "@/components/ui/badge";
+import AdUnit from "@/components/ad-unit";
 
 export default async function Home() {
   const articles = await rawArticles()
@@ -20,15 +21,15 @@ export default async function Home() {
     <div className="flex flex-col h-full w-full">
       <div className="flex flex-row h-full w-full">
         <div className="basis-1/3 h-full">
-          <div className="flex-col h-full">
-            <div className="">
+          <div className="flex flex-col h-full">
+            <div>
               <h2 className="text-2xl underline font-bold tracking-tight">Legfrissebb Írások</h2>
               {/* Top Artciles */}
               <section className="min-h-96">
                 <div className="flex flex-col">
                   {mainpage.latests
                     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-                    .slice(0, 3)
+                    .slice(0, 4)
                     .map((article, index) => (
                       <div className="w-full" key={index}>
                         <ArticleCard size="s" {...article} showPicture={false} />
@@ -38,8 +39,15 @@ export default async function Home() {
                 </div>
               </section>
             </div>
-            <div className="h-full">
-              AdUnit
+            <div className="w-full flex-grow">
+              <AdUnit>
+                <ins className="adsbygoogle"
+                  style={{ display: "block" }}
+                  data-ad-client="ca-pub-8712767354684493"
+                  data-ad-slot="8606932535"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"></ins>
+              </AdUnit>
             </div>
           </div>
         </div>
@@ -60,7 +68,7 @@ export default async function Home() {
               <section className="min-h-96">
                 <div className="flex flex-col">
                   {mainpage.tops
-                    .slice(0, 4)
+                    .slice(0, 5)
                     .map((article, index) => (
                       <div className="h-36 w-full" key={index}>
                         <ArticleCard size="l" {...article} />
@@ -74,13 +82,13 @@ export default async function Home() {
       </div>
       <div className="w-full h-px bg-border" />
       <div className="">
-        {/* In-Depth Analysis */}
+        {/* Tag Artciles */}
         <section className="space-y-6">
           <h2 className="text-2xl underline font-bold tracking-tight">Minden, ami <Badge variant='outline' size='large'>#{assumedTag}</Badge></h2>
           <div className="grid lg:grid-cols-3">
             {articles
               .filter((article) => article.tags.find(({ label }) => label === assumedTag))
-              .slice(0, 4)
+              .slice(0, 6)
               .map((article, index) => (
                 <ArticleCard key={index} size="l" {...article} />
               ))}
