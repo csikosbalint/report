@@ -4,6 +4,8 @@ import { NavigationSection } from '../../components/section-navigation'
 import { TagsSection } from '../../components/section-tags'
 import Footer from '../../components/footer'
 import '../globals.css'
+import AdUnit from '@/components/ad-unit'
+import { Suspense } from 'react'
 
 export default async function RootLayout({ children }) {
   const tagFilterSection = process.env.FLAG_TAGFILTER;
@@ -33,8 +35,33 @@ export default async function RootLayout({ children }) {
         <main className="basis-3/4">
           {children}
         </main>
-        <div className="basis-1/4 hidden md:block">
-          {/* <AdUnit /> */}
+        <div className="basis-1/4 hidden md:flex flex-col h-full">
+          <div className="h-1/2 w-full">
+          <Suspense fallback={<div className="h-1/2 w-full" />}>
+            <AdUnit>
+              <ins className="adsbygoogle"
+                style={{ display: "block" }}
+                data-ad-client="ca-pub-8712767354684493"
+                data-ad-slot="8606932535"
+                data-ad-format="vertical"
+                data-full-width-responsive="false">
+              </ins>
+            </AdUnit>
+          </Suspense>
+          </div>
+          <div className="h-1/2 w-full">
+          <Suspense fallback={<div className="h-1/2 w-full" />}>
+            <AdUnit>
+              <ins className="adsbygoogle"
+                style={{ display: "block" }}
+                data-ad-client="ca-pub-8712767354684493"
+                data-ad-slot="8606932535"
+                data-ad-format="vertical"
+                data-full-width-responsive="false">
+              </ins>
+            </AdUnit>
+          </Suspense>
+          </div>
         </div>
       </div>
       <div className="flex w-full justify-center border-t-2">
