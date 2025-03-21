@@ -8,13 +8,15 @@ export default function AdUnit({ children }) {
     const searchParams = useSearchParams();
     useEffect(() => {
         try {
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
+            window.onload = function() {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
         } catch (err) {
             console.error(err);
         }
     }, [pathname, searchParams]);
     return (
-        <div className="prose justify-center w-full flex flex-col items-center">
+        <div className="prose justify-center w-[300px] flex flex-col items-center">
             <div>Hírdetés</div>
             {children}
         </div>

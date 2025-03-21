@@ -37,7 +37,7 @@ export default async function RootLayout({ children }) {
         </main>
         <div className="basis-1/4 hidden md:flex flex-col h-full">
           <div className="h-1/2 w-full">
-          <Suspense fallback={<div className="h-1/2 w-full" />}>
+          {/* <Suspense fallback={<div className="h-1/2 w-full" />}>
             <AdUnit>
               <ins className="adsbygoogle"
                 style={{ display: "block" }}
@@ -47,10 +47,10 @@ export default async function RootLayout({ children }) {
                 data-full-width-responsive="false">
               </ins>
             </AdUnit>
-          </Suspense>
+          </Suspense> */}
           </div>
           <div className="h-1/2 w-full">
-          <Suspense fallback={<div className="h-1/2 w-full" />}>
+          {/* <Suspense fallback={<div className="h-1/2 w-full" />}>
             <AdUnit>
               <ins className="adsbygoogle"
                 style={{ display: "block" }}
@@ -60,7 +60,7 @@ export default async function RootLayout({ children }) {
                 data-full-width-responsive="false">
               </ins>
             </AdUnit>
-          </Suspense>
+          </Suspense> */}
           </div>
         </div>
       </div>

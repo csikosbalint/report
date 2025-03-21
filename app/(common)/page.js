@@ -40,15 +40,15 @@ export default async function Home() {
                 </div>
               </section>
             </div>
-            <div className="w-full flex-grow h-full">
-              <Suspense fallback={<div className="h-full w-full" />}>
+            <div className="w-[300px] flex-grow h-full">
+              <Suspense fallback={<div className="h-full w-[300px]" />}>
               <AdUnit>
                 <ins className="adsbygoogle"
                   style={{ display: "block" }}
                   data-ad-client="ca-pub-8712767354684493"
                   data-ad-slot="8606932535"
                   data-ad-format="vertical"
-                  data-full-width-responsive="false">
+                  data-full-width-responsive="true">
                   </ins>
               </AdUnit>
               </Suspense>
