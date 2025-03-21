@@ -1,5 +1,6 @@
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
+import Footer from "@/components/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 export default function RootLayout({ children }) {
   return (
