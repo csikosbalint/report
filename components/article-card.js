@@ -54,6 +54,7 @@ export default function ArticleCard({
           image?.formats?.large?.url || "/placeholder.svg?height=500&width=1000"
         }
         fill
+        sizes="100%"
         style={{ objectFit: "cover" }}
         alt={image?.alternativeText || title}
       />

@@ -32,35 +32,35 @@ export default async function RootLayout({ children }) {
         {tagFilterSection && <TagsSection />}
       </div>
       <div className="flex w-full max-w-[var(--max-width-total)]">
-        <main className="basis-3/4">
+        <main className="lg:basis-3/4">
           {children}
         </main>
-        <div className="basis-1/4 hidden md:flex flex-col h-full">
-          <div className="h-1/2 w-full">
-          <Suspense fallback={<div className="h-1/2 w-full" />}>
-            <AdUnit>
-              <ins className="adsbygoogle"
-                style={{ display: "block" }}
-                data-ad-client="ca-pub-8712767354684493"
-                data-ad-slot="8606932535"
-                data-ad-format="vertical"
-                data-full-width-responsive="false">
-              </ins>
-            </AdUnit>
-          </Suspense>
+        <div className="lg:basis-1/4 hidden lg:flex flex-col h-full">
+          <div className="basis-1/2 flex-grow w-full">
+            <Suspense fallback={<div className="w-full" />}>
+              <AdUnit>
+                <ins className="adsbygoogle w-full"
+                  style={{ display: "block" }}
+                  data-ad-client="ca-pub-8712767354684493"
+                  data-ad-slot="8606932535"
+                  data-ad-format="vertical"
+                  data-full-width-responsive="true">
+                </ins>
+              </AdUnit>
+            </Suspense>
           </div>
-          <div className="h-1/2 w-full">
-          <Suspense fallback={<div className="h-1/2 w-full" />}>
-            <AdUnit>
-              <ins className="adsbygoogle"
-                style={{ display: "block" }}
-                data-ad-client="ca-pub-8712767354684493"
-                data-ad-slot="8606932535"
-                data-ad-format="vertical"
-                data-full-width-responsive="false">
-              </ins>
-            </AdUnit>
-          </Suspense>
+          <div className="basis-1/2 w-full">
+            <Suspense fallback={<div className="w-full" />}>
+              <AdUnit>
+                <ins className="adsbygoogle w-full"
+                  style={{ display: "block" }}
+                  data-ad-client="ca-pub-8712767354684493"
+                  data-ad-slot="8606932535"
+                  data-ad-format="vertical"
+                  data-full-width-responsive="true">
+                </ins>
+              </AdUnit>
+            </Suspense>
           </div>
         </div>
       </div>
