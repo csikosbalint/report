@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-export default function AdUnit({ adSlot, adFormat = "auto", adLayout = "" }) {
+export default function AdUnit({ adSlot, adFormat = "auto", adLayout = "", adLayoutKey, className }) {
     const [hidden, setHidden] = useState(false)
     useEffect(() => {
         try {
@@ -15,11 +15,12 @@ export default function AdUnit({ adSlot, adFormat = "auto", adLayout = "" }) {
     }, [setHidden]);
     return (
         <>
-            <div className={`w-full h-full ${hidden && 'hidden' }`}>
-                <ins className="adsbygoogle h-[calc(100%-1rem)] w-full flex justify-center items-center"
+            <div className={`w-full h-full ${hidden && 'hidden'}`}>
+                <ins className={`adsbygoogle h-[calc(100%-1rem)] w-full flex justify-center items-center ${className}`}
                     data-ad-client="ca-pub-8712767354684493"
                     data-ad-slot={adSlot}
-                    data-ad-layout-key={adLayout}
+                    data-ad-layout={adLayout}
+                    data-ad-layout-key={adLayoutKey}
                     data-ad-format={adFormat}
                     data-full-width-responsive="true">
                 </ins>

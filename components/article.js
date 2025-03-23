@@ -8,7 +8,7 @@ import { Fragment, jsxs, jsx } from 'react/jsx-runtime'
 
 import Image from "next/image";
 
-export default async function Article({ content }) {
+export default async function Article({ content, children }) {
     const markdownResult = await remark()
         .use(html)
         .process(content);
@@ -29,9 +29,11 @@ export default async function Article({ content }) {
         })
         .process(markdownResult.toString());
 
-    return (
+    return (<>
         <article className="prose">
             {articleContentJsx.result}
         </article>
+        {children}
+        </>
     )
 }

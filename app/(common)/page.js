@@ -68,7 +68,7 @@ export default async function Home() {
                       </div>
                       {index % 3 === 1 ? (
                         <div className="h-48 w-full">
-                          <AdUnit adSlot="4289752306" adFormat="fluid" adLayout="-ff+6a-x-eh+tr" />
+                          <AdUnit adSlot="4289752306" adFormat="fluid" adLayoutKey="-ff+6a-x-eh+tr" />
                         </div>
                       ) : null}
                     </div>
