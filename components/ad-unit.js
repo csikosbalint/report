@@ -17,8 +17,10 @@ export default function AdUnit({ children }) {
     }, [pathname, searchParams, children]);
     return (
         <>
-            {children}
-            <div className="prose justify-center w-full flex flex-col items-center">
+            <div className="w-full h-full">
+                {children}
+            </div>
+            <div className="prose justify-center w-[calc(100%)-2rem] flex flex-col items-center">
                 <div>Hírdetés</div>
             </div>
         </>

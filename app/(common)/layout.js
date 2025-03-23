@@ -12,7 +12,7 @@ export default async function RootLayout({ children }) {
   const showPromotion = process.env.FLAG_PROMOTION;
   const geolocation = process.env.FLAG_GEOLOCATION;
   return (
-    <div className="flex flex-col h-screen w-screen min-h-screen items-center text-sm sm:text-md ">
+    <div className="flex flex-col h-full w-full items-center text-sm sm:text-md">
       <div className="w-full flex justify-center bg-primary">
         {showPromotion && (
           <PromotionSection
@@ -31,18 +31,18 @@ export default async function RootLayout({ children }) {
       <div>
         {tagFilterSection && <TagsSection />}
       </div>
-      <div className="flex w-full max-w-[var(--max-width-total)]">
+      <div className="flex w-full max-w-[var(--max-width-total)] h-full">
         <main className="lg:basis-3/4">
           {children}
         </main>
-        <div className="lg:basis-1/4 hidden lg:flex flex-col h-full">
-          <div className="basis-1/2 flex-grow w-full">
-            <Suspense fallback={<div className="w-full" />}>
+        <div className="lg:basis-1/4 hidden lg:flex flex-col h-full bg-green-100">
+          <div className="basis-1/2 flex-grow w-full h-full bg-rose-100">
+            <Suspense fallback={<div className="w-full h-full" />}>
               <AdUnit>
-                <ins className="adsbygoogle w-full"
+                <ins className="adsbygoogle w-full h-full"
                   style={{ display: "block" }}
                   data-ad-client="ca-pub-8712767354684493"
-                  data-ad-slot="8606932535"
+                  data-ad-slot="8626650819"
                   data-ad-format="vertical"
                   data-full-width-responsive="true">
                 </ins>
@@ -50,7 +50,7 @@ export default async function RootLayout({ children }) {
             </Suspense>
           </div>
           <div className="basis-1/2 w-full">
-            <Suspense fallback={<div className="w-full" />}>
+            {/* <Suspense fallback={<div className="w-full" />}>
               <AdUnit>
                 <ins className="adsbygoogle w-full"
                   style={{ display: "block" }}
@@ -60,7 +60,7 @@ export default async function RootLayout({ children }) {
                   data-full-width-responsive="true">
                 </ins>
               </AdUnit>
-            </Suspense>
+            </Suspense> */}
           </div>
         </div>
       </div>
