@@ -4,6 +4,7 @@ import { SectionArticleRelated } from "@/components/section-article-related";
 import Article from "@/components/article";
 import { rawArticle, rawArticles } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
+import AdUnit from "@/components/ad-unit";
 
 export async function generateStaticParams() {
   return await rawArticles()
@@ -76,7 +77,14 @@ export default async function ArticlePage({ params }) {
         </header>
 
         <div>
-          <Article content={article?.content} />
+          <Article content={article?.content}>
+            <AdUnit
+              adSlot="1392126224"
+              adFormat="fluid"
+              adLayout="in-article"
+              className="text-center"
+            />
+          </Article>
         </div>
       </article>
 
