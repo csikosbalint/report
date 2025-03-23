@@ -1,27 +1,30 @@
 'use client'
 
-import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react"
 
-export default function AdUnit({ children }) {
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+export default function AdUnit({ adSlot, adFormat = "auto", adLayout = ""}) {
     useEffect(() => {
         try {
-            window.onload = function () {
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-        } catch (err) {
-            console.error(err);
+          (window).adsbygoogle = (window).adsbygoogle || [];
+          (window).adsbygoogle.push({});
+        } catch (e) {
+          console.error('Error loading ads:', e);
         }
-    }, [pathname, searchParams, children]);
+      }, []);
     return (
         <>
-            <div className="w-full h-full">
-                {children}
+            <div className="w-full h-[calc(100%)-2rem]">
+                <ins className="adsbygoogle h-full w-full flex justify-center items-center"
+                    data-ad-client="ca-pub-8712767354684493"
+                    data-ad-slot={adSlot}
+                    data-ad-format={adFormat}
+                    data-ad-layout={adLayout}
+                    data-full-width-responsive="true">
+                </ins>
             </div>
-            <div className="prose justify-center w-[calc(100%)-2rem] flex flex-col items-center">
+            <div className="prose justify-center w-full flex flex-col items-center">
                 <div>Hírdetés</div>
+                <div className="hidden">({adSlot})</div>
             </div>
         </>
     )

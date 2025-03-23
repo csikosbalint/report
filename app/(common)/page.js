@@ -23,7 +23,7 @@ export default async function Home() {
       <div className="flex flex-row h-full w-full">
         <div className="basis-1/3 h-full">
           <div className="flex flex-col h-full">
-            {/* <div>
+            <div>
               <h2 className="text-2xl underline font-bold tracking-tight">Legfrissebb Írások</h2>
               <section className="min-h-96">
                 <div className="flex flex-col">
@@ -38,32 +38,9 @@ export default async function Home() {
                     ))}
                 </div>
               </section>
-            </div> */}
-            <div className="w-full flex-grow h-full bg-rose-400">
-              <Suspense fallback={<div className="h-full w-full" />}>
-              <AdUnit>
-                <ins className="adsbygoogle h-full w-full"
-                  style={{ display: "block" }}
-                  data-ad-client="ca-pub-8712767354684493"
-                  data-ad-slot="8626650819"
-                  data-ad-format="vertical"
-                  data-full-width-responsive="true">
-                  </ins>
-              </AdUnit>
-              </Suspense>
             </div>
-            <div className="w-full flex-grow h-full bg-rose-50">
-              <Suspense fallback={<div className="h-full w-full" />}>
-              <AdUnit>
-                <ins className="adsbygoogle h-full w-full"
-                  style={{ display: "block" }}
-                  data-ad-client="ca-pub-8712767354684493"
-                  data-ad-slot="8606932535"
-                  data-ad-format="vertical"
-                  data-full-width-responsive="true">
-                  </ins>
-              </AdUnit>
-              </Suspense>
+            <div className="w-full flex-grow h-full">
+              <AdUnit adSlot="8606932535" adFormat="vertical" />
             </div>
           </div>
         </div>
