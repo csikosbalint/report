@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { SectionArticleRelated } from "@/components/section-article-related";
 import Article from "@/components/article";
 import { rawArticle, rawArticles } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
 import AdUnit from "@/components/ad-unit";
+import ArticleCard from "@/components/article-card";
 
 export async function generateStaticParams() {
   return await rawArticles()
@@ -19,27 +19,20 @@ export async function generateStaticParams() {
     ))
 }
 
-async function getRelatedStories(refArticle) {
-  return [
-    {
-      title: "Climate Change Impact on Global Ecosystems",
-      excerpt:
-        "New research reveals the far-reaching consequences of climate change on biodiversity and ecosystem stability...",
-      imageSrc: "/placeholder.svg?height=200&width=400&text=Related+Story+1",
-    },
-    {
-      title: "Renewable Energy Breakthroughs",
-      excerpt:
-        "Scientists announce major advancements in solar and wind technologies, promising more efficient and affordable clean energy...",
-      imageSrc: "/placeholder.svg?height=200&width=400&text=Related+Story+2",
-    },
-    {
-      title: "Global Efforts to Reduce Plastic Pollution",
-      excerpt:
-        "Countries worldwide implement innovative strategies to tackle the growing crisis of plastic waste in oceans...",
-      imageSrc: "/placeholder.svg?height=200&width=400&text=Related+Story+3",
-    },
-  ];
+/**
+ * Retrieves related stories for a given article
+ * @param {ArticleDTO} article - The article to find related stories for
+ * @returns {Promise<ArticleDTO[]>} A promise that resolves to an array of related articles
+ */
+async function getRelatedStories(article) {
+    const articles = await rawArticles()
+      .then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
+      ))
+  return articles
+  .filter(art => art.id !== article.id)
+  .filter(art => art.tags.find(({label}) => article.tags.some(tag => tag.label === label)))
+  .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+  .slice(0, 3)
 }
 
 export default async function ArticlePage({ params }) {
@@ -47,7 +40,7 @@ export default async function ArticlePage({ params }) {
   const article = await rawArticle({
     documentId: articlePath[articlePath.length - 1]
   }).then(({ data }) => new ArticleDTO(data));
-  const relatedStories = await getRelatedStories(article);
+  const relateds = await getRelatedStories(article);
   return (
     <div>
       <article className="space-y-8">
@@ -77,7 +70,7 @@ export default async function ArticlePage({ params }) {
         </header>
 
         <div>
-          <Article content={article?.content}>
+          <Article article={article}>
             <AdUnit
               adSlot="1392126224"
               adFormat="fluid"
@@ -93,7 +86,12 @@ export default async function ArticlePage({ params }) {
         <Button variant="outline">Save for Later</Button>
       </div>
 
-      <SectionArticleRelated stories={relatedStories} />
+
+      <div className="grid grid-cols-3">
+      {relateds.map((related, index) => (
+        <ArticleCard key={index} size="l" {...related}/>
+      ))}
+      </div>
     </div>
   );
 }

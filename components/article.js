@@ -8,10 +8,19 @@ import { Fragment, jsxs, jsx } from 'react/jsx-runtime'
 
 import Image from "next/image";
 
-export default async function Article({ content, children }) {
+/**
+ * Renders an article component with markdown content converted to React components
+ * @async
+ * @param {Object} props - Component properties
+ * @param {ArticleDTO} props.article - Article data transfer object containing article information
+ * @param {React.ReactNode} props.children - Child components to render below the article
+ * @returns {Promise<JSX.Element>} A Promise that resolves to the rendered article component
+ * @throws {Error} If markdown processing or HTML conversion fails
+ */
+export default async function Article({ article, children }) {
     const markdownResult = await remark()
         .use(html)
-        .process(content);
+        .process(article.content);
     // Process HTML to React components using rehype
     const articleContentJsx = await unified()
         .use(rehypeParse, { fragment: true })
