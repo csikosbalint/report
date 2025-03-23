@@ -13,21 +13,26 @@ async function rawArticles(options) {
 }
 
 async function rawArticle({ documentId }) {
-    return articles.findOne(documentId);
+    return articles.findOne(documentId, {
+        populate: "*"
+    });
 }
 
 async function rawMainPage(options) {
-    return mainpage.find({ populate: {
-        main: {
-            populate: "*"
-        },
-        latests: {
-            populate: "*"
-        },
-        tops: {
-            populate: "*"
+    return mainpage.find({
+        ...options,
+        populate: {
+            main: {
+                populate: "*"
+            },
+            latests: {
+                populate: "*"
+            },
+            tops: {
+                populate: "*"
+            }
         }
-    } });
+    });
 }
 
 export { rawArticles, rawArticle, rawMainPage };
