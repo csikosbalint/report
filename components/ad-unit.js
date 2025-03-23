@@ -1,19 +1,21 @@
 'use client'
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function AdUnit({ adSlot, adFormat = "auto", adLayout = "" }) {
+    const [hidden, setHidden] = useState(false)
     useEffect(() => {
         try {
             (window).adsbygoogle = (window).adsbygoogle || [];
             (window).adsbygoogle.push({});
         } catch (e) {
             console.error('Error loading ads:', e);
+            setHidden(true)
         }
-    }, []);
+    }, [setHidden]);
     return (
         <>
-            <div className="w-full h-full">
+            <div className={`w-full h-full ${hidden && 'hidden' }`}>
                 <ins className="adsbygoogle h-[calc(100%-1rem)] w-full flex justify-center items-center"
                     data-ad-client="ca-pub-8712767354684493"
                     data-ad-slot={adSlot}
