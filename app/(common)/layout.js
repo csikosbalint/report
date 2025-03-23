@@ -40,7 +40,7 @@ export default async function RootLayout({ children }) {
             <AdUnit adSlot="8626650819" adFormat='vertical' />
           </div>
           <div className="basis-1/2 w-full">
-            <AdUnit adSlot="8626650819" adFormat='vertical'/>
+            <AdUnit adSlot="2688896029" adFormat='vertical'/>
           </div>
         </div>
       </div>

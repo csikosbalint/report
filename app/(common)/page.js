@@ -61,11 +61,17 @@ export default async function Home() {
               <section className="min-h-96">
                 <div className="flex flex-col">
                   {mainpage.tops
-                    .slice(0, 5)
-                    .map((article, index) => (
-                      <div className="h-36 w-full" key={index}>
+                    .slice(0, 4)
+                    .map((article, index) => (<div key={index}>
+                      <div className="h-36 w-full">
                         <ArticleCard size="l" {...article} />
                       </div>
+                      {index % 3 === 1 ? (
+                        <div className="h-36 w-full">
+                          <AdUnit adSlot="4289752306" adFormat="fluid" adLayout="-ff+6a-x-eh+tr" />
+                        </div>
+                      ) : null}
+                    </div>
                     ))}
                 </div>
               </section>
