@@ -113,17 +113,16 @@ export default function ArticleCard({
   };
 
   const formatDateAndTime = (date, readTime) => {
-    if (size === "xs" || size === "s") {
+    if (size === "xs" || size === "s" || size === 'm') {
       const shortDate = new Date(date).toLocaleDateString(undefined, {
         month: "short",
         day: "numeric",
       });
-      const shortReadTime = readTime.replace(" read", "");
-      return { shortDate, shortReadTime };
+      return { shortDate, shortReadTime: readTime + "\"" };
     }
     return {
       shortDate: new Date(date).toLocaleDateString(),
-      shortReadTime: readTime,
+      shortReadTime: readTime  + " perces",
     };
   };
 

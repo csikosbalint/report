@@ -2,6 +2,12 @@ import UrlSafeString from "url-safe-string";
 import TagDTO from "./TagDTO";
 import ImageDTO from "./ImageDTO";
 
+const calculateReadTime = content => {
+    const wordsPerMinute = 140;
+    const wordCount = content.trim().split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return minutes;
+}
 /**
  * Represents an article data transfer object.
  * @class
@@ -56,9 +62,9 @@ export default class ArticleDTO {
         this.tags = rawArticle?.Tags ? rawArticle?.Tags.map((tag) => new TagDTO(tag)) : [];
 
         /**
-         * @type {string}
+         * @type {number}
          */
-        this.readTime = "5 min read";
+        this.readTime = calculateReadTime(rawArticle.Content);
 
         /**
          * @type {string}
