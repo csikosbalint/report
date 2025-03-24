@@ -1,23 +1,21 @@
+import { GlobeIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export function NavigationSection() {
   const menuItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Recommended', href: '/recommended' },
-    { label: 'Local', href: '/local' },
-    { label: 'Blindspot', href: '/blindspot' },
+    { label: 'Holnap.click', href: '/', icon: <GlobeIcon/> },
   ]
 
   return (
-    <nav className="w-full sticky top-0 z-20 bg-background border-b">
+    <nav className="w-full bg-background border-b">
       <div className="max-w-[var(--max-width-total)] mx-auto"> 
-        <div className="flex h-16 items-center px-4">
+        <div className="flex h-12 items-center px-4">
           <div className="flex items-center space-x-6">
             {menuItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary flex items-center"
+                className="font-semibold hover:underline md:text-lg transition-colors hover:text-primary flex items-center gap-2"
               >
                 {item.icon}
                 {item.label}
