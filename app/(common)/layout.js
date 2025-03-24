@@ -5,7 +5,6 @@ import { TagsSection } from '../../components/section-tags'
 import Footer from '../../components/footer'
 import '../globals.css'
 import AdUnit from '@/components/ad-unit'
-import { Suspense } from 'react'
 
 export default async function RootLayout({ children }) {
   const tagFilterSection = process.env.FLAG_TAGFILTER;
@@ -25,7 +24,7 @@ export default async function RootLayout({ children }) {
       <div>
         {geolocation && <SettingsSection />}
       </div>
-      <div className="w-full">
+      <div className="w-full sticky top-0 z-10">
         <NavigationSection />
       </div>
       <div>

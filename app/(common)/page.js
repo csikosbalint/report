@@ -6,7 +6,6 @@ import ArticleDTO from "@/builders/models/ArticleDTO";
 import MainPageDTO from "@/builders/models/MainPageDTO";
 import { Badge } from "@/components/ui/badge";
 import AdUnit from "@/components/ad-unit";
-import { Suspense } from "react";
 
 export default async function Home() {
   const articles = await rawArticles()
