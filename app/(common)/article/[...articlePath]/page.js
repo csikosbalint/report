@@ -5,6 +5,7 @@ import { rawArticle, rawArticles } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
 import AdUnit from "@/components/ad-unit";
 import ArticleCard from "@/components/article-card";
+import { formatDate, formatTime } from "@/lib/utils";
 
 export async function generateStaticParams() {
   return await rawArticles()
@@ -63,9 +64,9 @@ export default async function ArticlePage({ params }) {
             </div>
           </div>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <time dateTime="2023-12-29">{new Date(article.published).toDateString()}</time>
+            <time dateTime="2023-12-29">{formatDate(article.publishedAt)}</time>
             <span>•</span>
-            <span>10 min read</span>
+            <span>{formatTime(article.readTime)}</span>
           </div>
         </header>
 

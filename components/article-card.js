@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, formatDate, formatTime } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
 
@@ -112,22 +112,6 @@ export default function ArticleCard({
     );
   };
 
-  const formatDateAndTime = (date, readTime) => {
-    if (size === "xs" || size === "s" || size === 'm') {
-      const shortDate = new Date(date).toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-      });
-      return { shortDate, shortReadTime: readTime + "\"" };
-    }
-    return {
-      shortDate: new Date(date).toLocaleDateString(),
-      shortReadTime: readTime  + " perces",
-    };
-  };
-
-  const { shortDate, shortReadTime } = formatDateAndTime(date, readTime);
-
   const content = (
     <div className="w-full">
       <span className={cn(titleClass, "line-clamp-2 block")}>
@@ -145,11 +129,11 @@ export default function ArticleCard({
           <div className="flex items-center text-sm text-muted-foreground gap-3">
             <time className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              {shortDate}
+              {formatDate(date, size)}
             </time>
             <div className="flex items-center gap-1">
               <Clock className="w-4 h-4" />
-              {shortReadTime}
+              {formatTime(readTime, size)}
             </div>
           </div>
           {renderDescription()}
@@ -186,11 +170,11 @@ export default function ArticleCard({
             <div className="flex items-center text-sm text-muted-foreground gap-3">
               <time className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                {shortDate}
+                {formatDate(date, size)}
               </time>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
-                {shortReadTime}
+                {formatTime(readTime, size)}
               </div>
             </div>
             {renderDescription()}
@@ -207,11 +191,11 @@ export default function ArticleCard({
             <div className="flex items-center text-sm text-muted-foreground gap-3">
               <time className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                {shortDate}
+                {formatDate(date, size)}
               </time>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
-                {shortReadTime}
+                {formatTime(readTime, size)}
               </div>
             </div>
           </div>
@@ -240,11 +224,11 @@ export default function ArticleCard({
               <div className="flex items-center text-sm text-muted-foreground gap-3">
                 <time className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
-                  {shortDate}
+                  {formatDate(date, size)}
                 </time>
                 <div className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
-                  {shortReadTime}
+                  {formatTime(readTime, size)}
                 </div>
               </div>
             </div>
