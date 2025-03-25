@@ -6,6 +6,8 @@ import ArticleDTO from "@/builders/models/ArticleDTO";
 import AdUnit from "@/components/ad-unit";
 import ArticleCard from "@/components/article-card";
 import { formatDate, formatTime, getInitials } from "@/lib/utils";
+import { Calendar } from "lucide-react";
+import { Clock } from "lucide-react";
 
 export async function generateStaticParams() {
   return await rawArticles()
@@ -52,21 +54,27 @@ export default async function ArticlePage({ params }) {
           <div className="flex items-center space-x-4">
             <Avatar>
               <AvatarImage
-                alt={article.author.name}
-                src={article.author.avatar.formats.thumbnail.url}
+                alt={article.author?.name}
+                src={article.author?.avatar.formats.thumbnail.url}
               />
-              <AvatarFallback>{getInitials(article.author.name)}</AvatarFallback>
+              <AvatarFallback>{getInitials(article.author?.name)}</AvatarFallback>
             </Avatar>
             <div className="w-1/2">
-              <div className="flex flex-row gap-2 text-xl font-semibold">
-                <p>{article.author.name}</p>
-                <span className="text-muted-foreground">•</span>
-                <p className="text-muted-foreground font-medium">{article.author.role}</p>
+              <div className="flex flex-row gap-2">
+                <div className="text-2xl font-semibold">{article.author?.name}</div>
+                <span className="text-2xl text-muted-foreground">•</span>
+                <p className="text-lg/8 text-muted-foreground font-medium">{article.author?.role}</p>
               </div>
               <div className="flex gap-2 text-sm">
-                <time dateTime="2023-12-29">{formatDate(article.publishedAt)}</time>
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  <div>{formatDate(article.date)}</div>
+                </div>
                 <span className="text-muted-foreground">•</span>
-                <span className="text-muted-foreground">{formatTime(article.readTime)}</span>
+                <div className="flex items-center gap-1 text-muted-foreground">
+                  <Clock className="w-4 h-4" />
+                  <span>{formatTime(article.readTime)}</span>
+                </div>
               </div>
 
             </div>

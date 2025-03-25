@@ -87,7 +87,7 @@ export default async function Home() {
               .filter((article) => article.tags.find(({ label }) => label === assumedTag))
               .slice(0, 6)
               .map((article, index) => (
-                <ArticleCard key={index} size="l" {...article} />
+                <ArticleCard key={index} size="m" {...article} />
               ))}
           </div>
         </section>

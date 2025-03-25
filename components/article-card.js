@@ -3,6 +3,7 @@ import Link from "next/link";
 import { cn, formatDate, formatTime, getInitials } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
+import { CircleUserRoundIcon } from "lucide-react";
 
 function truncateWords(str, numWords) {
   const words = str.split(" ");
@@ -25,26 +26,10 @@ export default function ArticleCard({
   readTime = "5 min read",
   tags = ["Technology", "AI", "Development"],
   description = "An interesting article about the future of technology and its impact on society...",
-  className,
   showPicture = true,
   link = "/#",
-  author = { name: "Anonymous", role: "" },
+  author
 }) {
-  const variants = {
-    xs: "flex items-center gap-3 p-2",
-    s: "max-w-[280px]",
-    m: "max-w-[600px]",
-    l: "max-w-[800px]",
-    xl: "max-w-[1000px]",
-  };
-
-  const imageSize = {
-    xs: { width: 60, height: 60 },
-    s: { width: 280, height: 160 },
-    m: { width: 200, height: 134 },
-    l: { width: 800, height: 400 },
-    xl: { width: 1000, height: 500 },
-  };
 
   const renderImage = () => {
     if (!showPicture) return <div className="hidden" />;
@@ -75,7 +60,7 @@ export default function ArticleCard({
   const maxTitleLength = {
     xs: 30,
     s: 50,
-    m: 70,
+    m: 80,
     l: 80,
     xl: 110,
   };
@@ -84,7 +69,7 @@ export default function ArticleCard({
     const maxWords = {
       xs: 0,
       s: 10,
-      m: 15,
+      m: 20,
       l: 20,
       xl: 40,
     };
@@ -146,11 +131,7 @@ export default function ArticleCard({
   return (
     <Link
       href={link}
-      className={cn(
-        "block transition-colors duration-200 hover:bg-gray-50 h-full w-full",
-        variants[size],
-        className
-      )}
+      className="block transition-colors duration-200 hover:bg-gray-50 h-full w-full"
     >
       {size === "xs" && (<>
         <div className="relative h-full w-1/4">
@@ -159,28 +140,6 @@ export default function ArticleCard({
         <span className={cn(titleClass, "line-clamp-2 block")}>
           {truncateTitle(title, maxTitleLength[size])}
         </span>
-        {size !== "xs" && (
-          <>
-            <div className="flex flex-wrap gap-2 mb-2">
-              {tags.map(({ label: tag }) => (
-                <Badge key={tag} variant="secondary">
-                  #{tag}
-                </Badge>
-              ))}
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground gap-3">
-              <time className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {formatDate(date, size)}
-              </time>
-              <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                {formatTime(readTime, size)}
-              </div>
-            </div>
-            {renderDescription()}
-          </>
-        )}
       </>)}
       {size === "s" && (
         <div className="flex-row p-2 gap-4 h-full w-full">
@@ -189,15 +148,15 @@ export default function ArticleCard({
               {truncateTitle(title, maxTitleLength[size])}
             </span>
 
-            <div className="flex items-center text-sm text-muted-foreground gap-3">
-            <div className="w-full shrink border-4 border-dashed]" />
-            <div className="flex items-center gap-1 w-fit">
-                <Calendar className="w-4 h-4" />
+            <div className="flex items-center text-xs gap-2">
+              <div className="w-full h-3 rounded shrink bg-gray-100" />
+              <div className="flex items-center gap-1 w-fit">
+                <Calendar className="w-4 h-4 text-muted-foreground" />
                 <div className="w-fit text-nowrap">{formatDate(date, size)}</div>
               </div>
-              <span className="text-muted-foreground">•</span>
+              <span>•</span>
               <div className="flex items-center gap-1 w-fit">
-                <Clock className="w-4 h-4" />
+                <Clock className="w-4 h-4 text-muted-foreground" />
                 {formatTime(readTime, size)}
               </div>
             </div>
@@ -205,11 +164,6 @@ export default function ArticleCard({
         </div>
       )}
       {size === "m" && (
-        <div className="p-4 flex items-stretch gap-4">
-          <div className="flex-grow space-y-2">{content}</div>
-        </div>
-      )}
-      {size === "l" && (
         <div className="flex p-2 gap-4 h-full w-full">
           <div className="basis-4/5 flex flex-col">
             <div className="flex flex-wrap gap-2 mb-2">
@@ -225,7 +179,7 @@ export default function ArticleCard({
               </span>
 
               <div className="flex items-center text-sm text-muted-foreground gap-2">
-                <div className="w-fit text-nowrap">Irta: {author.name}</div>
+                <CircleUserRoundIcon className="w-4 h-4" /><div className="w-fit text-nowrap">{getInitials(author?.name)}</div>
                 <span className="text-muted-foreground">•</span>
                 <time className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
@@ -244,10 +198,45 @@ export default function ArticleCard({
           </div>
         </div>
       )}
+      {size === "l" && (
+        <div className="flex p-2 gap-4 h-full w-full">
+          <div className="basis-4/5 flex flex-col">
+            <div className="flex flex-wrap gap-2 mb-2">
+              {tags.map(({ label: tag }) => (
+                <Badge key={tag} variant="outline">
+                  #{tag}
+                </Badge>
+              ))}
+            </div>
+            <div className="w-full space-y-2">
+              <span className={cn(titleClass, "line-clamp-2 block")}>
+                {truncateTitle(title, maxTitleLength[size])}
+              </span>
+
+              <div className="flex items-center text-sm text-muted-foreground gap-2">
+                <CircleUserRoundIcon className="w-5 h-5" /><div className="w-fit text-nowrap">{author?.name}</div>
+                <span>•</span>
+                <time className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  <div className="w-fit text-nowrap">{formatDate(date, size)}</div>
+                </time>
+                
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  <div className="w-fit text-nowrap">{formatTime(readTime, size)}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="basis-1/5 relative group h-full w-1/3 ">
+            {renderImage()}
+          </div>
+        </div>
+      )}
       {size === "xl" && (
         <div className="relative group h-full w-full">
           {renderImage()}
-          <div className="absolute inset-0 bg-gray-200 bg-opacity-60 group-hover:bg-gray-500 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white p-6 flex flex-col justify-between">
+          <div className="absolute inset-0 bg-gray-100 bg-opacity-60 group-hover:bg-gray-500 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white p-6 flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <div></div>
             </div>
