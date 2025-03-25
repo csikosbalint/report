@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { cn, formatDate, formatTime } from "@/lib/utils";
+import { cn, formatDate, formatTime, getInitials } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
 
@@ -28,6 +28,7 @@ export default function ArticleCard({
   className,
   showPicture = true,
   link = "/#",
+  author = { name: "Anonymous", role: "" },
 }) {
   const variants = {
     xs: "flex items-center gap-3 p-2",
@@ -189,11 +190,13 @@ export default function ArticleCard({
             </span>
 
             <div className="flex items-center text-sm text-muted-foreground gap-3">
-              <time className="flex items-center gap-1">
+            <div className="w-full shrink border-4 border-dashed]" />
+            <div className="flex items-center gap-1 w-fit">
                 <Calendar className="w-4 h-4" />
-                {formatDate(date, size)}
-              </time>
-              <div className="flex items-center gap-1">
+                <div className="w-fit text-nowrap">{formatDate(date, size)}</div>
+              </div>
+              <span className="text-muted-foreground">•</span>
+              <div className="flex items-center gap-1 w-fit">
                 <Clock className="w-4 h-4" />
                 {formatTime(readTime, size)}
               </div>
@@ -221,14 +224,17 @@ export default function ArticleCard({
                 {truncateTitle(title, maxTitleLength[size])}
               </span>
 
-              <div className="flex items-center text-sm text-muted-foreground gap-3">
+              <div className="flex items-center text-sm text-muted-foreground gap-2">
+                <div className="w-fit text-nowrap">Irta: {author.name}</div>
+                <span className="text-muted-foreground">•</span>
                 <time className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
-                  {formatDate(date, size)}
+                  <div className="w-fit text-nowrap">{formatDate(date, size)}</div>
                 </time>
+                <span className="text-muted-foreground">•</span>
                 <div className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
-                  {formatTime(readTime, size)}
+                  <div className="w-fit text-nowrap">{formatTime(readTime, size)}</div>
                 </div>
               </div>
             </div>

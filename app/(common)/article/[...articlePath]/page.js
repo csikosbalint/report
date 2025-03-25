@@ -53,7 +53,7 @@ export default async function ArticlePage({ params }) {
             <Avatar>
               <AvatarImage
                 alt={article.author.name}
-                src={article.author.avatar?.formats?.thumbnail?.url}
+                src={article.author.avatar.formats.thumbnail.url}
               />
               <AvatarFallback>{getInitials(article.author.name)}</AvatarFallback>
             </Avatar>

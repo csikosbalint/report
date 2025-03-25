@@ -22,7 +22,7 @@ export default class ArticleDTO {
      * @param {string} rawArticle.Title - The title of the article.
      * @param {string} rawArticle.Description - The description of the article.
      * @param {string} rawArticle.Content - The content of the article.
-     * @param {string} rawArticle.publishedAt - The publication date of the article.
+     * @param {string} rawArticle.createdAt - The publication date of the article.
      * @param {TagDTO[]} rawArticle.Tags - The tags associated with the article.
      * @param {ImageDTO} rawArticle.Image - The image associated with the article.
      * @param {AuthorDTO} rawArticle.Author - The author of the article.
@@ -72,12 +72,12 @@ export default class ArticleDTO {
         /**
          * @type {string}
          */
-        this.link = `/article/${new Date(rawArticle.publishedAt).getFullYear()}/${new Date(rawArticle.publishedAt).getMonth()}/${new Date(rawArticle.publishedAt).getDate()}/${new UrlSafeString().generate(rawArticle.Title)}/${rawArticle.documentId}`;
+        this.link = `/article/${new Date(rawArticle.createdAt).getFullYear()}/${new Date(rawArticle.createdAt).getMonth()}/${new Date(rawArticle.createdAt).getDate()}/${new UrlSafeString().generate(rawArticle.Title)}/${rawArticle.documentId}`;
 
         /**
          * @type {Date}
          */
-        this.publishedAt = new Date(rawArticle.publishedAt);
+        this.date = new Date(rawArticle.createdAt);
 
         /**
          * @type {AuthorDTO}
