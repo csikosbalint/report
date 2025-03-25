@@ -1,6 +1,7 @@
 import UrlSafeString from "url-safe-string";
 import TagDTO from "./TagDTO";
 import ImageDTO from "./ImageDTO";
+import { AuthorDTO } from "./AuthorDTO";
 
 const calculateReadTime = content => {
     const wordsPerMinute = 140;
@@ -24,6 +25,8 @@ export default class ArticleDTO {
      * @param {string} rawArticle.publishedAt - The publication date of the article.
      * @param {TagDTO[]} rawArticle.Tags - The tags associated with the article.
      * @param {ImageDTO} rawArticle.Image - The image associated with the article.
+     * @param {AuthorDTO} rawArticle.Author - The author of the article.
+     * @returns {ArticleDTO}
      */
     constructor(rawArticle) {
         /**
@@ -75,5 +78,10 @@ export default class ArticleDTO {
          * @type {Date}
          */
         this.publishedAt = new Date(rawArticle.publishedAt);
+
+        /**
+         * @type {AuthorDTO}
+         */
+        this.author = rawArticle.Author ? new AuthorDTO(rawArticle.Author) : null;
     }
 }

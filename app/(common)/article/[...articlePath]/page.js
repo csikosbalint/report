@@ -5,7 +5,7 @@ import { rawArticle, rawArticles } from "@/builders/cms";
 import ArticleDTO from "@/builders/models/ArticleDTO";
 import AdUnit from "@/components/ad-unit";
 import ArticleCard from "@/components/article-card";
-import { formatDate, formatTime } from "@/lib/utils";
+import { formatDate, formatTime, getInitials } from "@/lib/utils";
 
 export async function generateStaticParams() {
   return await rawArticles()
@@ -26,14 +26,14 @@ export async function generateStaticParams() {
  * @returns {Promise<ArticleDTO[]>} A promise that resolves to an array of related articles
  */
 async function getRelatedStories(article) {
-    const articles = await rawArticles()
-      .then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
-      ))
+  const articles = await rawArticles()
+    .then(({ data }) => data.map((rawArticle) => new ArticleDTO(rawArticle)
+    ))
   return articles
-  .filter(art => art.id !== article.id)
-  .filter(art => art.tags.find(({label}) => article.tags.some(tag => tag.label === label)))
-  .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-  .slice(0, 3)
+    .filter(art => art.id !== article.id)
+    .filter(art => art.tags.find(({ label }) => article.tags.some(tag => tag.label === label)))
+    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+    .slice(0, 3)
 }
 
 export default async function ArticlePage({ params }) {
@@ -52,21 +52,24 @@ export default async function ArticlePage({ params }) {
           <div className="flex items-center space-x-4">
             <Avatar>
               <AvatarImage
-                alt={article.author.displayName}
+                alt={article.author.name}
+                src={article.author.avatar?.formats?.thumbnail?.url}
               />
-              <AvatarFallback>JD</AvatarFallback>
+              <AvatarFallback>{getInitials(article.author.name)}</AvatarFallback>
             </Avatar>
-            <div>
-              <p className="font-semibold">{article.author.displayName}</p>
-              <p className="text-sm text-muted-foreground">
-                Internal Analyst
-              </p>
+            <div className="w-1/2">
+              <div className="flex flex-row gap-2 text-xl font-semibold">
+                <p>{article.author.name}</p>
+                <span className="text-muted-foreground">•</span>
+                <p className="text-muted-foreground font-medium">{article.author.role}</p>
+              </div>
+              <div className="flex gap-2 text-sm">
+                <time dateTime="2023-12-29">{formatDate(article.publishedAt)}</time>
+                <span className="text-muted-foreground">•</span>
+                <span className="text-muted-foreground">{formatTime(article.readTime)}</span>
+              </div>
+
             </div>
-          </div>
-          <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <time dateTime="2023-12-29">{formatDate(article.publishedAt)}</time>
-            <span>•</span>
-            <span>{formatTime(article.readTime)}</span>
           </div>
         </header>
 
@@ -89,9 +92,9 @@ export default async function ArticlePage({ params }) {
 
 
       <div className="grid grid-cols-3">
-      {relateds.map((related, index) => (
-        <ArticleCard key={index} size="l" {...related}/>
-      ))}
+        {relateds.map((related, index) => (
+          <ArticleCard key={index} size="l" {...related} />
+        ))}
       </div>
     </div>
   );
