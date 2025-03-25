@@ -1,4 +1,5 @@
 import { strapi } from '@strapi/client';
+import { Tag } from 'lucide-react';
 
 const client = strapi({ baseURL: process.env.CMS_BASE_URL + '/api' });
 const articles = client.collection('articles');
@@ -14,7 +15,14 @@ async function rawArticles(options) {
 
 async function rawArticle({ documentId }) {
     return articles.findOne(documentId, {
-        populate: "*"
+        populate: {
+            Author: {
+                populate: "*"
+            },
+            Tags: {
+                populate: "*"
+            }
+        },
     });
 }
 

@@ -32,7 +32,6 @@ export default async function Home() {
                     .map((article, index) => (
                       <div className="w-full" key={index}>
                         <ArticleCard size="s" {...article} showPicture={false} />
-                        <div className="w-5/6 mx-auto my-1 h-px bg-border" />
                       </div>
                     ))}
                 </div>
@@ -83,12 +82,12 @@ export default async function Home() {
         {/* Tag Artciles */}
         <section className="space-y-6">
           <h2 className="text-2xl underline font-bold tracking-tight">Minden, ami <Badge variant='outline' size='large'>#{assumedTag}</Badge></h2>
-          <div className="grid lg:grid-cols-3">
+          <div className="grid lg:grid-cols-2">
             {articles
               .filter((article) => article.tags.find(({ label }) => label === assumedTag))
               .slice(0, 6)
               .map((article, index) => (
-                <ArticleCard key={index} size="l" {...article} />
+                <ArticleCard key={index} size="m" {...article} />
               ))}
           </div>
         </section>
