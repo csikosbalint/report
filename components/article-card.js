@@ -98,36 +98,6 @@ export default function ArticleCard({
     );
   };
 
-  const content = (
-    <div className="w-full">
-      <span className={cn(titleClass, "line-clamp-2 block")}>
-        {truncateTitle(title, maxTitleLength[size])}
-      </span>
-      {size !== "xs" && (
-        <>
-          <div className="flex flex-wrap gap-2 mb-2">
-            {tags.map(({ label: tag }) => (
-              <Badge key={tag} variant="secondary">
-                #{tag}
-              </Badge>
-            ))}
-          </div>
-          <div className="flex items-center text-sm text-muted-foreground gap-3">
-            <time className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              {formatDate(date, size)}
-            </time>
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              {formatTime(readTime, size)}
-            </div>
-          </div>
-          {renderDescription()}
-        </>
-      )}
-    </div>
-  );
-
   return (
     <Link
       href={link}
@@ -169,7 +139,7 @@ export default function ArticleCard({
             <div className="flex flex-wrap gap-2 mb-2">
               {tags.map(({ label: tag }) => (
                 <Badge key={tag} variant="outline">
-                  #{tag}
+                  {tag}
                 </Badge>
               ))}
             </div>
@@ -204,7 +174,7 @@ export default function ArticleCard({
             <div className="flex flex-wrap gap-2 mb-2">
               {tags.map(({ label: tag }) => (
                 <Badge key={tag} variant="outline">
-                  #{tag}
+                  {tag}
                 </Badge>
               ))}
             </div>

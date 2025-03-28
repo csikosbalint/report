@@ -8,6 +8,8 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
+        text: 
+          "border-transparent bg-transparent",
         default:
           "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
         secondary:
@@ -33,9 +35,11 @@ function Badge({
   className,
   variant,
   size,
+  hash=true,
+  children,
   ...props
 }) {
-  return (<div className={cn(badgeVariants({ variant, size }), className)} {...props} />);
+  return (<div className={cn(badgeVariants({ variant, size }), className)} {...props}>{hash ? '#' : ''}{children}</div>);
 }
 
 export { Badge, badgeVariants }

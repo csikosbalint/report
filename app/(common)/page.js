@@ -15,7 +15,7 @@ export default async function Home() {
     .then(({ data: rawMainPage }) => new MainPageDTO(rawMainPage)
     )
 
-  const assumedTag = 'Europa'
+  const assumedTags = ['Europa', 'Világ', 'Magyarország']
 
   return (
     <div className="flex flex-col h-full w-full">
@@ -23,7 +23,6 @@ export default async function Home() {
         <div className="basis-1/3 h-full">
           <div className="flex flex-col h-full">
             <div>
-              <h2 className="text-2xl underline font-bold tracking-tight">Legfrissebb Írások</h2>
               <section className="min-h-96">
                 <div className="flex flex-col">
                   {mainpage.latests
@@ -77,14 +76,14 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full h-px bg-border" />
       <div className="">
-        {/* Tag Artciles */}
         <section className="space-y-6">
-          <h2 className="text-2xl underline font-bold tracking-tight">Minden, ami <Badge variant='outline' size='large'>#{assumedTag}</Badge></h2>
+          <div className="flex gap-2">
+            {assumedTags.map((tag, index) => <Badge key={index} variant='outline' size='large'>{tag}</Badge>)}
+            </div>
           <div className="grid lg:grid-cols-2">
             {articles
-              .filter((article) => article.tags.find(({ label }) => label === assumedTag))
+              .filter((article) => article.tags.find(({ label }) => assumedTags.includes(label)))
               .slice(0, 6)
               .map((article, index) => (
                 <ArticleCard key={index} size="m" {...article} />
