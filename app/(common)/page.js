@@ -22,20 +22,19 @@ export default async function Home() {
       <div className="flex flex-row h-full w-full pb-4">
         <div className="basis-1/3 h-full pr-4">
           <div className="flex flex-col h-full">
-            <div>
-              <section className="min-h-96">
-                <div className="flex flex-col">
-                  {mainpage.latests
-                    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-                    .slice(0, 4)
-                    .map((article, index) => (
-                      <div className="w-full" key={index}>
-                        <ArticleCard size="s" {...article} showPicture={false} />
-                      </div>
-                    ))}
-                </div>
-              </section>
-            </div>
+            <div className="text-2xl uppercase font-extrabold tracking-wider">A ma gondolati</div>
+            <section className="min-h-96">
+              <div className="flex flex-col">
+                {mainpage.latests
+                  .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+                  .slice(0, 4)
+                  .map((article, index) => (
+                    <div className="w-full" key={index}>
+                      <ArticleCard size="s" {...article} showPicture={false} />
+                    </div>
+                  ))}
+              </div>
+            </section>
             <div className="w-full flex-grow h-full">
               <AdUnit adSlot="8606932535" adFormat="vertical" />
             </div>
