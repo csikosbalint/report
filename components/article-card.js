@@ -65,39 +65,6 @@ export default function ArticleCard({
     xl: 110,
   };
 
-  const renderDescription = () => {
-    const maxWords = {
-      xs: 0,
-      s: 10,
-      m: 20,
-      l: 20,
-      xl: 40,
-    };
-
-    if (size === "xs") return null;
-
-    const words = description.split(" ");
-    const isTruncated = words.length > maxWords[size];
-    const truncatedDescription = isTruncated
-      ? truncateWords(description, maxWords[size] - 1) // Subtract 1 to account for ellipsis
-      : description;
-
-    return (
-      <div className="text-sm text-muted-foreground">
-        <span>{truncatedDescription}</span>
-        {isTruncated && (
-          <>
-            <span>... </span>
-            <br />
-            <span className="flex justify-end items-center font-semibold hover:underline">
-              Read more
-            </span>
-          </>
-        )}
-      </div>
-    );
-  };
-
   return (
     <Link
       href={link}
@@ -112,7 +79,7 @@ export default function ArticleCard({
         </span>
       </>)}
       {size === "s" && (
-        <div className="flex-row p-2 gap-4 h-full w-full">
+        <div className="flex-row gap-4 h-full w-full">
           <div className="w-full">
             <span className={cn(titleClass, "line-clamp-2 block")}>
               {truncateTitle(title, maxTitleLength[size])}
@@ -134,7 +101,7 @@ export default function ArticleCard({
         </div>
       )}
       {size === "m" && (
-        <div className="flex p-2 gap-4 h-full w-full">
+        <div className="flex gap-4 h-full w-full">
           <div className="basis-4/5 flex flex-col">
             <div className="flex flex-wrap gap-2 mb-2">
               {tags.map(({ label: tag }) => (
@@ -169,7 +136,7 @@ export default function ArticleCard({
         </div>
       )}
       {size === "l" && (
-        <div className="flex p-2 gap-4 h-full w-full">
+        <div className="flex gap-4 h-full w-full">
           <div className="basis-4/5 flex flex-col">
             <div className="flex flex-wrap gap-2 mb-2">
               {tags.map(({ label: tag }) => (
@@ -206,7 +173,7 @@ export default function ArticleCard({
       {size === "xl" && (
         <div className="relative group h-full w-full">
           {renderImage()}
-          <div className="absolute inset-0 bg-gray-100 bg-opacity-60 group-hover:bg-gray-500 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white p-6 flex flex-col justify-between">
+          <div className="absolute inset-0 bg-gray-100 bg-opacity-60 group-hover:bg-gray-500 group-hover:bg-opacity-70 transition-colors duration-200 text-black group-hover:text-white flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <div></div>
             </div>

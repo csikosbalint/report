@@ -45,9 +45,9 @@ export default async function ArticlePage({ params }) {
   }).then(({ data }) => new ArticleDTO(data));
   const relateds = await getRelatedStories(article);
   return (
-    <div>
-      <article className="space-y-8">
-        <header className="space-y-4">
+    <div className="border-r border-primary pr-4">
+      <article className="space-y-8 p-4">
+        <header>
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}
           </h1>
@@ -91,15 +91,13 @@ export default async function ArticlePage({ params }) {
             />
           </Article>
         </div>
+        <div className="flex justify-center">
+          <Button>Share Article</Button>
+          <Button variant="outline">Save for Later</Button>
+        </div>
       </article>
 
-      <div className="flex justify-center space-x-4">
-        <Button>Share Article</Button>
-        <Button variant="outline">Save for Later</Button>
-      </div>
-
-
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 border-t border-primary p-4">
         {relateds.map((related, index) => (
           <ArticleCard key={index} size="l" {...related} />
         ))}

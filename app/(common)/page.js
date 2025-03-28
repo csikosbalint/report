@@ -19,8 +19,8 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <div className="flex flex-row h-full w-full">
-        <div className="basis-1/3 h-full">
+      <div className="flex flex-row h-full w-full pb-4">
+        <div className="basis-1/3 h-full pr-4">
           <div className="flex flex-col h-full">
             <div>
               <section className="min-h-96">
@@ -42,45 +42,41 @@ export default async function Home() {
           </div>
         </div>
         <div className="basis-2/3 h-full">
-          <div className="flex-col">
-            <div>
-              {/* Main Article Card */}
-              <section className="min-h-96">
-                <div className="">
-                  <div className="h-96 w-full">
-                    <ArticleCard size="xl" {...mainpage.main} />
-                  </div>
+          <div className="flex-col border-x border-primary px-4">
+            {/* Main Article Card */}
+            <section className="min-h-96">
+              <div className="">
+                <div className="h-96 w-full">
+                  <ArticleCard size="xl" {...mainpage.main} />
                 </div>
-              </section>
-            </div>
-            <div>
-              {/* Latest Artciles */}
-              <section className="min-h-96">
-                <div className="flex flex-col">
-                  {mainpage.tops
-                    .slice(0, 4)
-                    .map((article, index) => (<div key={index}>
-                      <div className="h-36 w-full">
-                        <ArticleCard size="l" {...article} />
-                      </div>
-                      {index % 3 === 1 ? (
-                        <div className="h-48 w-full">
-                          <AdUnit adSlot="4289752306" adFormat="fluid" adLayoutKey="-ff+6a-x-eh+tr" />
-                        </div>
-                      ) : null}
+              </div>
+            </section>
+            {/* Latest Artciles */}
+            <section className="min-h-96">
+              <div className="flex flex-col">
+                {mainpage.tops
+                  .slice(0, 4)
+                  .map((article, index) => (<div key={index}>
+                    <div className="h-36 w-full">
+                      <ArticleCard size="l" {...article} />
                     </div>
-                    ))}
-                </div>
-              </section>
-            </div>
+                    {index % 3 === 1 ? (
+                      <div className="h-48 w-full">
+                        <AdUnit adSlot="4289752306" adFormat="fluid" adLayoutKey="-ff+6a-x-eh+tr" />
+                      </div>
+                    ) : null}
+                  </div>
+                  ))}
+              </div>
+            </section>
           </div>
         </div>
       </div>
-      <div className="">
-        <section className="space-y-6">
+      <div className="border-t border-primary py-4">
+        <section className="min-h-48">
           <div className="flex gap-2">
             {assumedTags.map((tag, index) => <Badge key={index} variant='outline' size='large'>{tag}</Badge>)}
-            </div>
+          </div>
           <div className="grid lg:grid-cols-2">
             {articles
               .filter((article) => article.tags.find(({ label }) => assumedTags.includes(label)))
