@@ -7,7 +7,7 @@ export function NavigationSection() {
   ]
 
   return (
-    <nav className="w-full bg-background border-b">
+    <nav className="w-full bg-background border-b border-primary">
       <div className="max-w-[var(--max-width-total)] mx-auto"> 
         <div className="flex h-12 items-center px-4">
           <div className="flex items-center space-x-6">

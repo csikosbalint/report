@@ -30,11 +30,11 @@ export default async function RootLayout({ children }) {
       <div>
         {tagFilterSection && <TagsSection />}
       </div>
-      <div className="flex w-full max-w-[var(--max-width-total)] h-full">
+      <div className="flex w-full max-w-[var(--max-width-total)] h-full py-8">
         <main className="xl:basis-3/4">
           {children}
         </main>
-        <div className="xl:basis-1/4 hidden xl:flex flex-col h-full">
+        <div className="xl:basis-1/4 hidden xl:flex flex-col h-full pl-4">
           <div className="basis-1/2 flex-grow w-full h-full">
             <AdUnit adSlot="8626650819" adFormat='vertical' />
           </div>
@@ -43,10 +43,8 @@ export default async function RootLayout({ children }) {
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-center border-t-2">
-        <div className="max-w-[var(--max-width-total)]">
+      <div className="border-t border-primary w-full">
           <Footer />
-        </div>
       </div>
     </div>
   )
