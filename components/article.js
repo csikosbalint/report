@@ -14,7 +14,7 @@ import Image from "next/image";
  * @param {Object} props - Component properties
  * @param {ArticleDTO} props.article - Article data transfer object containing article information
  * @param {React.ReactNode} props.children - Child components to render below the article
- * @returns {Promise<JSX.Element>} A Promise that resolves to the rendered article component
+ * @returns {Promise<Element>} A Promise that resolves to the rendered article component
  * @throws {Error} If markdown processing or HTML conversion fails
  */
 export default async function Article({ article, children }) {
@@ -24,7 +24,6 @@ export default async function Article({ article, children }) {
     // Process HTML to React components using rehype
     const articleContentJsx = await unified()
         .use(rehypeParse, { fragment: true })
-        // .use(rehypeReact, production)
         .use(rehypeReact, {
             createElement,
             Fragment,

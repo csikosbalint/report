@@ -1,4 +1,3 @@
-import UrlSafeString from "url-safe-string";
 import TagDTO from "./TagDTO";
 import ImageDTO from "./ImageDTO";
 import { AuthorDTO } from "./AuthorDTO";
@@ -14,7 +13,7 @@ const calculateReadTime = content => {
  * @class
  */
 export default class ArticleDTO {
-    
+
     /**
      * Creates an instance of ArticleDTO.
      * @param {Object} rawArticle - The raw article data.
@@ -72,7 +71,7 @@ export default class ArticleDTO {
         /**
          * @type {string}
          */
-        this.link = `/article/${new Date(rawArticle.createdAt).getFullYear()}/${new Date(rawArticle.createdAt).getMonth()}/${new Date(rawArticle.createdAt).getDate()}/${new UrlSafeString().generate(rawArticle.Title)}/${rawArticle.documentId}`;
+        this.link = `/article/${new Date(rawArticle.createdAt).getFullYear()}/${new Date(rawArticle.createdAt).getMonth()}/${new Date(rawArticle.createdAt).getDate()}/${encodeURI(rawArticle.Title.replace(/[\.,-\/#!$%' "^&*;:{}=_`~()?]/g, '-'))}/${rawArticle.documentId}`;
 
         /**
          * @type {Date}
