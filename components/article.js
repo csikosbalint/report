@@ -32,18 +32,27 @@ export default async function Article({ article, children }) {
             passNode: true,
             components: {
                 // h1: ({ children }) => <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{children}</h1>,
-                img: ({ src, alt }) => <Image src={src} alt={alt} width={400} height={200} />,
+                img: (img) => {
+                    console.log(img)
+                    const { src, alt } = img;
+                    return (
+                        <div className="w-full flex flex-col items-center mb-8">
+                            <Image className="mb-1" src={src} alt={alt} width={400} height={200} />
+                            <div className="font-extralight text-sm">({alt})</div>
+                        </div>
+                    )
+                }
             },
         })
         .process(markdownResult.toString());
 
-    return (<>
-        <article className="prose">
+    return (<div className="">
+        <article className="prose text-lg min-w-fit mx-48 ">
             {articleContentJsx.result}
         </article>
         <div className="h-48 w-full">
             {children}
         </div>
-    </>
+    </div>
     )
 }

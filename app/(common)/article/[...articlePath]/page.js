@@ -46,7 +46,7 @@ export default async function ArticlePage({ params }) {
   const relateds = await getRelatedStories(article);
   return (
     <div className="border-r border-primary pr-4">
-      <article className="space-y-8 p-4">
+      <article className="mb-8 p-4">
         <header>
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}
@@ -81,26 +81,22 @@ export default async function ArticlePage({ params }) {
           </div>
         </header>
 
-        <div>
-          <Article article={article}>
-            <AdUnit
-              adSlot="1392126224"
-              adFormat="fluid"
-              adLayout="in-article"
-              className="text-center"
-            />
-          </Article>
-        </div>
-        <div className="flex justify-center">
-          <Button>Share Article</Button>
-          <Button variant="outline">Save for Later</Button>
-        </div>
+        <Article article={article}>
+          <AdUnit
+            adSlot="1392126224"
+            adFormat="fluid"
+            adLayout="in-article"
+            className="text-center"
+          />
+        </Article>
       </article>
 
-      <div className="grid grid-cols-3 border-t border-primary p-4">
-        {relateds.map((related, index) => (
-          <ArticleCard key={index} size="l" {...related} />
-        ))}
+      <div className="grid grid-cols-2 gap-4">
+        {relateds
+          .slice(0, 2)
+          .map((related, index) => (
+            <ArticleCard key={index} size="l" {...related} />
+          ))}
       </div>
     </div>
   );

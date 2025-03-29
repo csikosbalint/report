@@ -14,9 +14,9 @@ export function NavigationSection() {
       <div className="max-w-[var(--max-width-total)] mx-auto">
         <div className="flex h-12 items-center gap-6">
           <div className="basis-5/6 flex items-center gap-4">
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <Link
-                key={item.href}
+                key={index}
                 href={item.href}
                 className="font-semibold hover:underline md:text-lg transition-colors hover:text-primary flex items-center gap-2"
               >

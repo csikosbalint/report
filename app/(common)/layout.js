@@ -35,10 +35,13 @@ export default async function RootLayout({ children }) {
           {children}
         </main>
         <div className="xl:basis-1/5 hidden xl:flex flex-col h-full pl-4">
-          <div className="basis-1/2 flex-grow w-full h-full">
+          <div className="basis-1/3 flex-grow w-full h-full">
             <AdUnit adSlot="8626650819" adFormat='vertical' />
           </div>
-          <div className="basis-1/2 w-full">
+          <div className="basis-1/3 w-full">
+            <AdUnit adSlot="2688896029" adFormat='vertical' />
+          </div>
+          <div className="basis-1/3 w-full">
             <AdUnit adSlot="2688896029" adFormat='vertical' />
           </div>
         </div>
