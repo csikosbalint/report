@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col h-full w-full">
       <div className="flex flex-row h-fit w-full pb-4">
-        <div className="basis-1/3 h-full w-full pr-4">
+        <div className="hidden sm:flex sm:basis-1/3 h-full w-full pr-4">
           <div className="flex flex-col justify-between h-full gap-8">
             <div className="flex flex-col gap-4 h-fit">
               {/* Latest Articles */}
@@ -43,8 +43,8 @@ export default async function Home() {
             </div>
           </div>
         </div>
-        <div className="basis-2/3 h-full">
-          <div className="flex flex-col border-x border-primary px-4 gap-8">
+        <div className="sm:basis-2/3 h-full">
+          <div className="flex flex-col border-x border-primary sm:px-4 gap-8">
             {/* Main Article Card */}
             <section className="min-h-96">
               <div className="h-96 w-full">

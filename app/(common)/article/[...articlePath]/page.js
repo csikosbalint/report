@@ -46,7 +46,7 @@ export default async function ArticlePage({ params }) {
   const relateds = await getRelatedStories(article);
   return (
     <div className="border-r border-primary pr-4">
-      <article className="mb-8 p-4">
+      <article className="mb-1 sm:mb-8 p-1 sm:p-4">
         <header>
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}

@@ -47,7 +47,7 @@ export default async function Article({ article, children }) {
         .process(markdownResult.toString());
 
     return (<div className="">
-        <article className="prose text-lg min-w-fit mx-48 ">
+        <article className="prose text-lg md:min-w-fit mx-1 sm:mx-48 ">
             {articleContentJsx.result}
         </article>
         <div className="h-48 w-full">
