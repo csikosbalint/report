@@ -21,15 +21,16 @@ export default async function Home() {
     <div className="flex flex-col h-full w-full">
       <div className="flex flex-row h-full w-full pb-4">
         <div className="basis-1/3 h-full pr-4">
-          <div className="flex flex-col h-full">
-            <div className="text-2xl uppercase font-extrabold tracking-wider">A ma gondolati</div>
+          <div className="flex flex-col h-full gap-6">
+            {/* Latest Articles */}
+            <div className="text-4xl/10 capitalize font-extrabold px-1">A ma gondolati</div>
             <section className="min-h-96">
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-1">
                 {mainpage.latests
                   .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
                   .slice(0, 4)
                   .map((article, index) => (
-                    <div className="w-full" key={index}>
+                    <div className="w-full border-b border-gray-200 pb-1" key={index}>
                       <ArticleCard size="s" {...article} showPicture={false} />
                     </div>
                   ))}
@@ -41,25 +42,23 @@ export default async function Home() {
           </div>
         </div>
         <div className="basis-2/3 h-full">
-          <div className="flex-col border-x border-primary px-4">
+          <div className="flex flex-col border-x border-primary px-4 gap-8">
             {/* Main Article Card */}
             <section className="min-h-96">
-              <div className="">
-                <div className="h-96 w-full">
-                  <ArticleCard size="xl" {...mainpage.main} />
-                </div>
+              <div className="h-96 w-full">
+                <ArticleCard size="xl" {...mainpage.main} />
               </div>
             </section>
-            {/* Latest Artciles */}
+            {/* Tops Artciles */}
             <section className="min-h-96">
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-8">
                 {mainpage.tops
                   .slice(0, 4)
                   .map((article, index) => (<div key={index}>
                     <div className="h-36 w-full">
                       <ArticleCard size="l" {...article} />
                     </div>
-                    {index % 3 === 1 ? (
+                    {index % 4 === 1 ? (
                       <div className="h-48 w-full">
                         <AdUnit adSlot="4289752306" adFormat="fluid" adLayoutKey="-ff+6a-x-eh+tr" />
                       </div>
@@ -72,14 +71,14 @@ export default async function Home() {
         </div>
       </div>
       <div className="border-t border-primary py-4">
-        <section className="min-h-48">
+        <section className="flex flex-col gap-4 min-h-48">
           <div className="flex gap-2">
             {assumedTags.map((tag, index) => <Badge key={index} variant='outline' size='large'>{tag}</Badge>)}
           </div>
-          <div className="grid lg:grid-cols-2">
+          <div className="grid gri lg:grid-cols-3 gap-4">
             {articles
               .filter((article) => article.tags.find(({ label }) => assumedTags.includes(label)))
-              .slice(0, 6)
+              .slice(0, 9)
               .map((article, index) => (
                 <ArticleCard key={index} size="m" {...article} />
               ))}
