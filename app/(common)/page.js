@@ -19,24 +19,26 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <div className="flex flex-row h-full w-full pb-4">
-        <div className="basis-1/3 h-full pr-4">
-          <div className="flex flex-col h-full gap-6">
-            {/* Latest Articles */}
-            <div className="text-4xl/10 capitalize font-extrabold px-1">A ma gondolati</div>
-            <section className="min-h-96">
-              <div className="flex flex-col gap-1">
-                {mainpage.latests
-                  .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
-                  .slice(0, 4)
-                  .map((article, index) => (
-                    <div className="w-full border-b border-gray-200 pb-1" key={index}>
-                      <ArticleCard size="s" {...article} showPicture={false} />
-                    </div>
-                  ))}
-              </div>
-            </section>
-            <div className="w-full flex-grow h-full">
+      <div className="flex flex-row h-fit w-full pb-4">
+        <div className="basis-1/3 h-full w-full pr-4">
+          <div className="flex flex-col justify-between h-full gap-8">
+            <div className="flex flex-col gap-4 h-fit">
+              {/* Latest Articles */}
+              <div className="text-4xl/10 capitalize font-extrabold px-1">A ma gondolati</div>
+              <section className="min-h-96">
+                <div className="flex flex-col gap-1">
+                  {mainpage.latests
+                    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+                    .slice(0, 5)
+                    .map((article, index) => (
+                      <div className="w-full border-b border-gray-200 pb-1" key={index}>
+                        <ArticleCard size="s" {...article} showPicture={false} />
+                      </div>
+                    ))}
+                </div>
+              </section>
+            </div>
+            <div className="w-full h-fit pl-4">
               <AdUnit adSlot="8606932535" adFormat="vertical" />
             </div>
           </div>
@@ -59,7 +61,7 @@ export default async function Home() {
                       <ArticleCard size="l" {...article} />
                     </div>
                     {index % 4 === 1 ? (
-                      <div className="h-48 w-full">
+                      <div className="h-48 w-full pt-4">
                         <AdUnit adSlot="4289752306" adFormat="fluid" adLayoutKey="-ff+6a-x-eh+tr" />
                       </div>
                     ) : null}
