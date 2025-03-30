@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export function NavigationSection() {
-  const motto = "A ma gondolati, a holnap hírei."
+  const motto = "A ma gondolatai, a holnap hírei."
   const menuItems = [
     { label: <Image className="pt-2" src="/logo.png" alt="Logo" width={100} height={60} />, href: '/', icon: <GlobeIcon /> },
     { label: "Főcím", href: '/' }
