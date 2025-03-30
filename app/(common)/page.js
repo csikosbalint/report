@@ -24,7 +24,7 @@ export default async function Home() {
           <div className="flex flex-col justify-between h-full gap-8">
             <div className="flex flex-col gap-4 h-fit">
               {/* Latest Articles */}
-              <div className="text-4xl/10 capitalize font-extrabold px-1">A ma gondolati</div>
+              <div className="text-4xl/10 capitalize font-extrabold px-1">A ma gondolatai</div>
               <section className="min-h-96">
                 <div className="flex flex-col gap-1">
                   {mainpage.latests
