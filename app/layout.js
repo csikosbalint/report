@@ -1,7 +1,9 @@
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
+import Insights from "@/components/insights";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Head from "next/head";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -18,6 +20,7 @@ export default function RootLayout({ children }) {
         <div>{children}</div>
         <CookieConsent />
         <SpeedInsights />
+        <Insights />
       </body>
     </html>
   );

@@ -33,7 +33,6 @@ export default async function Article({ article, children }) {
             components: {
                 // h1: ({ children }) => <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{children}</h1>,
                 img: (img) => {
-                    console.log(img)
                     const { src, alt } = img;
                     return (
                         <div className="w-full flex flex-col items-center mb-8">
