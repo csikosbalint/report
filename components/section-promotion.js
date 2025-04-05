@@ -10,9 +10,9 @@ export function PromotionSection({ text, buttonText, link }) {
   if (!isVisible) return null
 
   return (
-    <div className='max-w-[var(--max-width-total)] flex py-2 pl-2 pr-8 text-primary-foreground relative'>
+    <div className='sm:max-w-[var(--max-width-total)] flex py-2 pl-2 pr-8 text-primary-foreground relative'>
       <div className='flex items-center justify-center gap-2 sm:gap-8'>
-        <p className='text-sm md:text-lg font-semibold truncate max-w-[calc(var(--max-width-total)-10rem)]'>
+        <p className='text-sm text-wrap md:text-nowrap md:text-lg font-semibold truncate max-w-[calc(var(--max-width-total)-10rem)]'>
           {text}
         </p>
         <Button
