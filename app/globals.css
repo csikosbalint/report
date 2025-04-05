@@ -10,7 +10,6 @@ body,
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;
   scrollbar-width: none;
-  overflow-x: hidden;
   --max-width-wide: 69rem;
   --max-width-content: 56rem;
   --max-width-total: 92rem;
