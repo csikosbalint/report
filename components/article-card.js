@@ -132,10 +132,10 @@ export default function ArticleCard({
         </div>
       )}
       {size === "l" && (
-        <div className="flex gap-4 h-full w-full pl-1">
+        <div className="flex gap-1 md:gap-4 h-full pr-2 w-full pl-1">
           <div className="basis-4/5 flex flex-col pt-1">
             <div className="flex flex-col gap-1 justify-around h-full">
-              <span className={cn(titleClass, "line-clamp-2")}>
+              <span className={cn(titleClass, " line-clamp-2 min-h-16")}>
                 {truncateTitle(title, maxTitleLength[size])}
               </span>
               <div className="line-clamp-2">
@@ -151,7 +151,7 @@ export default function ArticleCard({
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="hidden md:flex items-center gap-2">
                   <CircleUserRoundIcon className="w-5 h-5" /><div className="w-fit text-nowrap">{author?.name}</div>
                   <span>•</span>
                   <time className="flex items-center gap-1">
@@ -176,7 +176,7 @@ export default function ArticleCard({
         <div className="relative group h-full w-full">
           {renderImage()}
           <div className="absolute inset-0 bg-gray-100/10 group-hover:bg-gray-300/30 group-hover:bg-opacity-70 transition-colors duration-200 text-white hover:underline flex flex-col justify-end">
-            <div className={cn(titleClass) + " px-6 pb-2 capitalize"}>
+            <div className={cn(titleClass) + " p-2 md:px-6 md:pb-2 capitalize"}>
               {truncateTitle(title, maxTitleLength[size])}
             </div>
           </div>

@@ -31,6 +31,7 @@ export default async function Article({ article, children }) {
             jsxs,
             passNode: true,
             components: {
+                h1: (props) => <h1 className="text-xl md:prose-h1" {...props} />,
                 img: (img) => {
                     const { src, alt } = img;
                     return (
@@ -45,10 +46,10 @@ export default async function Article({ article, children }) {
         .process(markdownResult.toString());
 
     return (<div className="">
-        <article className="prose text-lg min-w-fit mx-48">
+        <article className="prose prose-lg md:prose-sm text-xl md:text-lg md:min-w-fit mx-1 md:mx-48">
             {articleContentJsx.result}
         </article>
-        <div className="h-48 m-8">
+        <div className="md:h-48 md:m-8 bg-rose-50">
             {children}
         </div>
     </div>

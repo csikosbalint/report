@@ -5,15 +5,15 @@ import Link from 'next/link'
 export function NavigationSection() {
   const motto = "A ma gondolatai, a holnap hírei."
   const menuItems = [
-    { label: <Image className="pt-2" src="/logo.png" alt="Logo" width={100} height={60} />, href: '/', icon: <GlobeIcon /> },
+    { label: <Image className="hidden md:block pt-2" src="/logo.png" alt="Logo" width={100} height={60} />, href: '/', icon: <GlobeIcon /> },
     { label: "Főcím", href: '/' }
   ]
 
   return (
-    <nav className="w-full bg-background border-b border-primary px-8">
+    <nav className="w-full bg-background border-b border-primary pl-4 pr-2 md:pl-8">
       <div className="max-w-[var(--max-width-total)] mx-auto">
-        <div className="flex h-12 items-center gap-6">
-          <div className="basis-5/6 flex items-center gap-4">
+        <div className="flex h-12 items-center gap-6 w-full">
+          <div className="basis-4/6 md:basis-5/6 flex items-center gap-4">
             {menuItems.map((item, index) => (
               <Link
                 key={index}
@@ -25,7 +25,7 @@ export function NavigationSection() {
               </Link>
             ))}
           </div>
-          <div className="basis-1/6 pt-4 italic font-semibold tracking-wide antialiased font-sans text-primary text-nowrap">
+          <div className="basis-2/6 md:basis-1/6 text-wrap text-xs md:pt-4 italic font-semibold tracking-wide antialiased font-sans text-primary md:text-nowrap">
             "{motto}"
           </div>
         </div>

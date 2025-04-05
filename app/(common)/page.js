@@ -74,10 +74,13 @@ export default async function Home() {
       </div>
       <div className="border-t border-primary py-4">
         <section className="flex flex-col gap-4 min-h-48">
-          <div className="flex gap-2 p-4">
+          <div className="hidden md:flex gap-2 p-4">
             {assumedTags.map((tag, index) => <Badge key={index} variant='outline' size='large'>{tag}</Badge>)}
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex md:hidden gap-2 p-4">
+            {assumedTags.map((tag, index) => <Badge key={index} variant='outline' size='default'>{tag}</Badge>)}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {articles
               .filter((article) => article.tags.find(({ label }) => assumedTags.includes(label)))
               .slice(0, 9)

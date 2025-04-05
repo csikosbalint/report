@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Article from "@/components/article";
 import { rawArticle, rawArticles } from "@/builders/cms";
@@ -46,12 +45,12 @@ export default async function ArticlePage({ params }) {
   const relateds = await getRelatedStories(article);
   return (
     <div className="border-r border-primary pr-4">
-      <article className="mb-1 sm:mb-8 p-4">
+      <article className="mb-1 md:mb-8 p-4">
         <header>
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+          <h1 className="m-1 text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}
           </h1>
-          <div className="flex flex-row items-center gap-2 m-8">
+          <div className="flex flex-row items-center gap-1 md:gap-2 m-8">
             <Avatar>
               <AvatarImage
                 alt={article.author?.name}
@@ -59,11 +58,11 @@ export default async function ArticlePage({ params }) {
               />
               <AvatarFallback>{getInitials(article.author?.name)}</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
               <div className="flex flex-row gap-2 items-center">
-                <div className="text-2xl font-semibold">{article.author?.name}</div>
-                <span className="text-2xl text-muted-foreground">•</span>
-                <p className="text-lg/8 text-muted-foreground font-medium">{article.author?.role}</p>
+                <div className="md:text-2xl font-semibold">{article.author?.name}</div>
+                <span className="md:text-2xl text-muted-foreground">•</span>
+                <p className="md:text-lg/8 text-muted-foreground font-medium">{article.author?.role}</p>
               </div>
               <div className="flex gap-2 text-sm">
                 <div className="flex items-center gap-1">
