@@ -46,12 +46,12 @@ export default async function ArticlePage({ params }) {
   const relateds = await getRelatedStories(article);
   return (
     <div className="border-r border-primary pr-4">
-      <article className="mb-1 sm:mb-8 p-1 sm:p-4">
+      <article className="mb-1 sm:mb-8 p-4">
         <header>
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {article.title}
           </h1>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-row items-center gap-2 m-8">
             <Avatar>
               <AvatarImage
                 alt={article.author?.name}
@@ -59,8 +59,8 @@ export default async function ArticlePage({ params }) {
               />
               <AvatarFallback>{getInitials(article.author?.name)}</AvatarFallback>
             </Avatar>
-            <div className="w-1/2">
-              <div className="flex flex-row gap-2">
+            <div className="flex flex-col ">
+              <div className="flex flex-row gap-2 items-center">
                 <div className="text-2xl font-semibold">{article.author?.name}</div>
                 <span className="text-2xl text-muted-foreground">•</span>
                 <p className="text-lg/8 text-muted-foreground font-medium">{article.author?.role}</p>
@@ -76,7 +76,6 @@ export default async function ArticlePage({ params }) {
                   <span>{formatTime(article.readTime)}</span>
                 </div>
               </div>
-
             </div>
           </div>
         </header>
@@ -91,7 +90,7 @@ export default async function ArticlePage({ params }) {
         </Article>
       </article>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-16 m-8">
         {relateds
           .slice(0, 2)
           .map((related, index) => (

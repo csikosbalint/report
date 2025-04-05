@@ -1,5 +1,11 @@
 import Link from 'next/link';
 
+/**
+ * A footer component with copyright information and links to
+ * privacy policy and terms of service.
+ *
+ * @returns {JSX.Element} The footer component.
+ */
 export default function Footer() {
   return (
     <div className="py-6 w-full text-primary-foreground bg-primary text-lg">

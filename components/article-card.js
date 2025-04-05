@@ -105,7 +105,11 @@ export default function ArticleCard({
               <span className={cn(titleClass, "line-clamp-2")}>
                 {truncateTitle(title, maxTitleLength[size])}
               </span>
-
+              {description && (
+                <div className="line-clamp-2">
+                  {truncateWords(description, 20)}
+                </div>
+              )}
               <div className="flex items-center text-sm text-muted-foreground gap-2">
                 <div className="shrink w-full mt-1 mr-4 h-2 bg-primary/80" />
                 <CircleUserRoundIcon className="w-4 h-4" /><div className="w-fit text-nowrap">{getInitials(author?.name)}</div>
