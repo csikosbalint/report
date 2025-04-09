@@ -1,4 +1,5 @@
 import ArticleDTO from "./ArticleDTO";
+import TagDTO from "./TagDTO";
 
 /**
  * Represents the main page data transfer object.
@@ -12,6 +13,7 @@ export default class MainPageDTO {
      * @param {Object} rawMainPage.main - The main article data.
      * @param {Object[]} rawMainPage.latest - The latest articles data.
      * @param {Object[]} rawMainPage.tops - The top articles data.
+     * @param {Object[]} rawMainPage.tags - The actual tags data.
      */
     constructor(rawMainPage) {
         /**
@@ -28,5 +30,10 @@ export default class MainPageDTO {
          * @type {ArticleDTO[]}
          */
         this.tops = rawMainPage?.tops ? rawMainPage.tops.map((rawArticle) => new ArticleDTO(rawArticle)) : [];
+
+        /**
+         * @type {TagDTO[]}
+         */
+        this.tags = rawMainPage?.tags ? rawMainPage.tags.map((rawTag) => new TagDTO(rawTag)) : [];
     }
 }

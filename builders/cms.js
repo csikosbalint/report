@@ -53,6 +53,9 @@ async function rawMainPage(options) {
             },
             tops: {
                 populate: "*"
+            },
+            tags: {
+                populate: "*"
             }
         }
     });

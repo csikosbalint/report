@@ -15,7 +15,8 @@ export default async function Home() {
     .then(({ data: rawMainPage }) => new MainPageDTO(rawMainPage)
     )
 
-  const assumedTags = ['Europa', 'Világ', 'Magyarország']
+  const assumedTags = mainpage.tags.map((tag) => tag.label)
+    .slice(0, 3)
 
   return (
     <div className="flex flex-col h-full w-full">
